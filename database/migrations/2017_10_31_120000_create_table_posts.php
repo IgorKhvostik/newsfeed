@@ -13,13 +13,6 @@ class CreateTablePosts extends Migration
      */
     public function up()
     {
-       Schema::create('users', function (Blueprint $table){
-           $table->increments('id');
-           $table->string('first_name');
-           $table->string('second_name');
-           $table->string('password');
-
-       });
        Schema::create('posts', function (Blueprint $table){
            $table->increments('id');
            $table->foreign('user_id')
@@ -43,7 +36,7 @@ class CreateTablePosts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+
         Schema::dropIfExists('posts');
     }
 }
