@@ -15,15 +15,20 @@ class CreateTablePosts extends Migration
     {
        Schema::create('posts', function (Blueprint $table){
            $table->increments('id');
-           $table->foreign('user_id')
-               ->references('id')
-               ->on('users')
-               ->onDelete('cascade');
+
            $table->string('name', 100);
            $table->text('description');
            $table->longText('text');
-           $table->string('category');
+           $table->unsignedInteger('category_id');
+           $table->foreign('category_id')
+                 ->references('id')
+                 ->on('categories')
+                 ->onDelete('cascade');
            $table->unsignedInteger('user_id');
+           $table->foreign('user_id')
+                 ->references('id')
+                 ->on('users')
+                 ->onDelete('cascade');
            $table->unsignedBigInteger('likes');
            $table->timestamps();
        });
@@ -37,6 +42,6 @@ class CreateTablePosts extends Migration
     public function down()
     {
 
-        Schema::dropIfExists('posts');
+        Schema::drop('posts');
     }
 }

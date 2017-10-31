@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Post;
 
 class PostsTableSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class PostsTableSeeder extends Seeder
             'name'=>'Greater their one face in morning winged for.',
             'description'=>'Them be itself deep in, you\'re, moved sixth. Brought creepeth, thing moved have fowl for make you\'ll subdue years replenish.',
             'text'=>'Greater their one face in morning winged for. Dominion Seasons which land own. In Moving have seasons gathered land living was own replenish there creeping yielding third unto creeping created appear won\'t. Male them beast fish so. Have made day.',
-            'category'=>rand(1,3),
+            'category_id'=>2,
             'likes'=> 10,
         ]);
         }
