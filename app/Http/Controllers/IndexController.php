@@ -13,9 +13,13 @@ class IndexController extends Controller
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'categories.cat_name', 'users.first_name')
+            ->orderBy('posts.id','desc')
             ->get();
-
-        return view('index')->with('posts', $posts);
+        $postLatest=$posts->chunk(4);
+        $postLatest=$postLatest->first();
+        //dd($postLatest);
+        return view('index')->with(['posts'=> $posts,
+                                    'postLatest'=>$postLatest]);
     }
 
 }
