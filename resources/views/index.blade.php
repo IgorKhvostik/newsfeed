@@ -14,10 +14,6 @@
   <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.fancybox.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/theme.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
-  <!--[if lt IE 9]>
-  <script src="{{asset('js/html5shiv.min.js')}}"></script>
-  <script src="{{asset('js/respond.min.js')}}"></script>
-  <![endif]-->
 </head>
 <body>
 <div id="preloader">
@@ -288,7 +284,7 @@
       </div>
     </div>
     <div class="footer_bottom">
-      <p class="copyright">Copyright &copy; 2045 <a href="#">NewsFeed</a></p>
+      <p class="copyright">Copyright &copy; 2017 <a href="#">NewsFeed</a></p>
       <p class="developer">Developed By Wpfreeware</p>
     </div>
   </footer>
