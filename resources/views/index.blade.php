@@ -56,7 +56,7 @@
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="slick_slider">
 
-          @foreach($postLatest as $post)
+          @foreach($sortByLikes as $post)
 
             <div class="single_iteam"> <a href="#"> <img src="{{asset('images/slider_img4.jpg')}}" alt=""></a>
               <div class="slider_article">
@@ -69,20 +69,26 @@
 
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="latest_post">
-          <h2><span>Latest post</span></h2>
-          <div class="latest_post_container">
-            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-            <ul class="latest_postnav">
-              <li>
-                <div class="media"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
-                  <div class="media-body"> <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                </div>
-              </li>
-            </ul>
-            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+
+          <div class="latest_post">
+            <h2><span>Latest post</span></h2>
+            <div class="latest_post_container">
+              <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+
+              <ul class="latest_postnav">
+                @foreach($postLatest as $post)
+                <li>
+                  <div class="media"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
+                    <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
+                  </div>
+                </li>
+                @endforeach
+              </ul>
+              <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+            </div>
           </div>
-        </div>
+
+
       </div>
     </div>
     </div>

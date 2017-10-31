@@ -15,11 +15,15 @@ class IndexController extends Controller
             ->select('posts.*', 'categories.cat_name', 'users.first_name')
             ->orderBy('posts.id','desc')
             ->get();
-        $postLatest=$posts->chunk(4);
-        $postLatest=$postLatest->first();
+        $postLatest=$posts->chunk(5)->first();
+        $sortByLikes=$posts->sortByDesc('likes')->chunk(4)->first();
         //dd($postLatest);
+
+
         return view('index')->with(['posts'=> $posts,
-                                    'postLatest'=>$postLatest]);
+                                    'postLatest'=>$postLatest,
+                                    'sortByLikes'=>$sortByLikes
+                                     ]);
     }
 
 }
