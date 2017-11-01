@@ -131,11 +131,11 @@
             </div>
             <div class="technology">
               <div class="single_post_content">
-                <h2><a href="{{route ('categoryController',['category'=> $firstPostSports->cat_name])}}"><span>Sports</span></a></h2>
+                <h2><a href="{{route ('categoryController',['categoryName'=> $firstPostSports->cat_name])}}"><span>Sports</span></a></h2>
                 <ul class="business_catgnav">
                   <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="#" class="featured_img"> <img alt="" src="{{asset('images/featured_img3.jpg')}}"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="#">{{$firstPostSports->name}}</a> </figcaption>
+                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> $firstPostSports->cat_name, 'id'=>$firstPostSports->id])}}" class="featured_img"> <img alt="" src="{{asset('images/featured_img3.jpg')}}"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="{{route ('postController',['categoryName'=> $firstPostSports->cat_name, 'id'=>$firstPostSports->id])}}">{{$firstPostSports->name}}</a> </figcaption>
                       <p>{{$firstPostSports->description}}</p>
                     </figure>
                   </li>
@@ -143,8 +143,8 @@
                 <ul class="spost_nav">
                   @foreach($otherPostSports as $post)
                   <li>
-                    <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
-                      <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> $post->cat_name, 'id'=>$post->id])}}" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
+                      <div class="media-body"> <a href="{{route ('postController',['categoryName'=> $post->cat_name, 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                     </div>
                   </li>
                     @endforeach

@@ -59,8 +59,11 @@ class IndexController extends Controller
                                          ]);
     }
 
-    public function category($category){
-        dd($category);
+    public function category($categoryName){
+
     }
 
+    public function post($categoryName,$postId){
+        dd($postId);
+    }
 }
