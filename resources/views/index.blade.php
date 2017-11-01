@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('navArea')
+@section('content')
 
   <section id="navArea">
     <nav class="navbar navbar-inverse" role="navigation">
@@ -27,9 +27,6 @@
       </div>
     </nav>
   </section>
-@endsection
-
-@section('newsLine')
   <section id="newsSection">
     <div class="row">
       <div class="col-lg-12 col-md-12">
@@ -45,12 +42,22 @@
             <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Eight News Item</a></li>
             <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Nine News Item</a></li>
           </ul>
+          <div class="social_area">
+            <ul class="social_nav">
+              <li class="facebook"><a href="#"></a></li>
+              <li class="twitter"><a href="#"></a></li>
+              <li class="flickr"><a href="#"></a></li>
+              <li class="pinterest"><a href="#"></a></li>
+              <li class="googleplus"><a href="#"></a></li>
+              <li class="vimeo"><a href="#"></a></li>
+              <li class="youtube"><a href="#"></a></li>
+              <li class="mail"><a href="#"></a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  @endsection
-@section('all')
   <section id="sliderSection">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
@@ -66,7 +73,7 @@
             </div>
 
             @endforeach
-
+        </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
 
@@ -91,7 +98,7 @@
 
       </div>
     </div>
-    </div>
+
   </section>
   <section id="contentSection">
     <div class="row">

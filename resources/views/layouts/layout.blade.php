@@ -48,9 +48,7 @@
             </div>
         </header>
 
-        @yield('navArea')
-        @yield('newsLine')
-        @yield('all')
+        @yield('content')
 
 <footer id="footer">
     <div class="footer_top">
