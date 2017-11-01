@@ -42,7 +42,7 @@
                         <a href="#"><i class="fa fa-user"></i>Wpfreeware</a>
                             <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>{{$category}}</a> </div>
                                 <div class="single_page_content">
-                                    <img class="img-center" src="../images/2517-4.jpg" alt="">
+                                    <img class="" src="../images/2517-4.jpg" alt="">
                                     <p>{{$text}}</p>
 
                     </div>
