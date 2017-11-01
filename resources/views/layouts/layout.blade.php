@@ -16,9 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 </head>
 <body>
-<div id="preloader">
+{{--<div id="preloader">
     <div id="status">&nbsp;</div>
-</div>
+</div>--}}
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     <div class="container">
         <header id="header">
@@ -90,13 +90,7 @@
     </div>
 </footer>
 </div>
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/wow.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/slick.min.js')}}"></script>
-<script src="{{asset('js/jquery.li-scroller.1.0.js')}}"></script>
-<script src="{{asset('js/jquery.newsTicker.min.js')}}"></script>
-<script src="{{asset('js/jquery.fancybox.pack.js')}}"></script>
-<script src="{{asset('js/custom.js')}}"></script>
+
+
 </body>
 </html>

@@ -27,37 +27,7 @@
       </div>
     </nav>
   </section>
-  <section id="newsSection">
-    <div class="row">
-      <div class="col-lg-12 col-md-12">
-        <div class="latest_newsarea"> <span>Latest News</span>
-          <ul id="ticker01" class="news_sticker">
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My First News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Second News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Third News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Four News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Five News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Six News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Seven News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Eight News Item</a></li>
-            <li><a href="#"><img src="{{asset('images/news_thumbnail3.jpg')}}" alt="">My Nine News Item</a></li>
-          </ul>
-          <div class="social_area">
-            <ul class="social_nav">
-              <li class="facebook"><a href="#"></a></li>
-              <li class="twitter"><a href="#"></a></li>
-              <li class="flickr"><a href="#"></a></li>
-              <li class="pinterest"><a href="#"></a></li>
-              <li class="googleplus"><a href="#"></a></li>
-              <li class="vimeo"><a href="#"></a></li>
-              <li class="youtube"><a href="#"></a></li>
-              <li class="mail"><a href="#"></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
   <section id="sliderSection">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
@@ -65,9 +35,9 @@
 
           @foreach($sortByLikes as $post)
 
-            <div class="single_iteam"> <a href="#"> <img src="{{asset('images/slider_img4.jpg')}}" alt=""></a>
+            <div class="single_iteam"> <a href="{{$post->id}}"> <img src="{{asset('images/slider_img4.jpg')}}" alt=""></a>
               <div class="slider_article">
-                <h2><a class="slider_tittle" href="#">{{$post->name}}</a></h2>
+                <h2><a class="slider_tittle" href="{{$post->id}}">{{$post->name}}</a></h2>
                 <p>{{$post->description}}</p>
               </div>
             </div>
@@ -110,19 +80,21 @@
               <ul class="business_catgnav  wow fadeInDown">
                 <li>
                   <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" src="{{asset('images/featured_img1.jpg')}}"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="#">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                    <figcaption> <a href="#">{{$firstPostBusiness->name}}</a> </figcaption>
+                    <p>{{$firstPostBusiness->description}}</p>
                   </figure>
                 </li>
               </ul>
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
+                @foreach($otherPostBusiness as $post)
                 <li>
                   <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
-                    <div class="media-body"> <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
                   </div>
                 </li>
+                  @endforeach
               </ul>
             </div>
           </div>
@@ -131,47 +103,51 @@
               <div class="single_post_content">
                 <h2><span>Fashion</span></h2>
 
-                  @foreach($posts as $post)
-                    @if($post->cat_name=='Fashion')
+
+
+
+
                     <ul class="business_catgnav wow fadeInDown">
                         <li>
                           <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" src="{{asset('images/featured_img2.jpg')}}"> <span class="overlay"></span> </a>
-                            <figcaption> <a href="#">{{$post->name}}</a> </figcaption>
-                            <p>{{$post->description}}</p>
+                            <figcaption> <a href="#">{{$firstPostFashion->name}}</a> </figcaption>
+                            <p>{{$firstPostFashion->description}}</p>
                           </figure>
                         </li>
                     </ul>
-                      @break
-                      @endif
+
+
+                      @foreach($otherPostFashion as $post)
+                      <ul class="spost_nav">
+                        <li>
+                          <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
+                            <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
+                          </div>
+                        </li>
+                      </ul>
                     @endforeach
 
-
-                <ul class="spost_nav">
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
-                      <div class="media-body"> <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                    </div>
-                  </li>
-                </ul>
               </div>
             </div>
             <div class="technology">
               <div class="single_post_content">
-                <h2><span>Technology</span></h2>
+                <h2><span>Sports</span></h2>
                 <ul class="business_catgnav">
                   <li>
                     <figure class="bsbig_fig wow fadeInDown"> <a href="#" class="featured_img"> <img alt="" src="{{asset('images/featured_img3.jpg')}}"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="#">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                      <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                      <figcaption> <a href="#">{{$firstPostSports->name}}</a> </figcaption>
+                      <p>{{$firstPostSports->description}}</p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
+                  @foreach($otherPostSports as $post)
                   <li>
                     <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
-                      <div class="media-body"> <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                      <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
                     </div>
                   </li>
+                    @endforeach
                 </ul>
               </div>
             </div>
@@ -227,3 +203,12 @@
     </div>
   </section>
 @endsection
+
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+  <script src="{{asset('js/wow.min.js')}}"></script>
+  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('js/slick.min.js')}}"></script>
+  <script src="{{asset('js/jquery.li-scroller.1.0.js')}}"></script>
+  <script src="{{asset('js/jquery.newsTicker.min.js')}}"></script>
+  <script src="{{asset('js/jquery.fancybox.pack.js')}}"></script>
+  <script src="{{asset('js/custom.js')}}"></script>

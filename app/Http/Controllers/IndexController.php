@@ -15,15 +15,48 @@ class IndexController extends Controller
             ->select('posts.*', 'categories.cat_name', 'users.first_name')
             ->orderBy('posts.id','desc')
             ->get();
+
+        //getting posts for "latest post" block
         $postLatest=$posts->chunk(5)->first();
+
+        //getting posts for "slick_slider" block
         $sortByLikes=$posts->sortByDesc('likes')->chunk(4)->first();
+
+        //getting posts for "fashion" block
+        $postsFashion=$posts->filter(function ($value){
+            return $value->cat_name=='Fashion';
+        });
+        $firstPostFashion=$postsFashion->first();
+        $otherPostFashion=$postsFashion->splice(1,4);
+
+        //getting posts for "sports" block
+        $postsSports=$posts->filter(function ($value){
+            return $value->cat_name=='Sports';
+        });
+        $firstPostSports=$postsSports->first();
+        $otherPostSports=$postsSports->splice(1,4);
+
+        //getting posts for "business" block
+        $postsBusiness=$posts->filter(function ($value){
+            return $value->cat_name=='Business';
+        });
+        $firstPostBusiness=$postsBusiness->first();
+        $otherPostBusiness=$postsBusiness->splice(1,4);
+
+        //dd($otherPostFashion);
         //dd($postLatest);
 
 
-        return view('index')->with(['posts'=> $posts,
-                                    'postLatest'=>$postLatest,
-                                    'sortByLikes'=>$sortByLikes
-                                     ]);
+            return view('index')->with(['posts'=> $posts,
+                                        'postLatest'=>$postLatest,
+                                        'sortByLikes'=>$sortByLikes,
+                                        'firstPostFashion'=>$firstPostFashion,
+                                        'otherPostFashion'=>$otherPostFashion,
+                                        'firstPostSports'=> $firstPostSports,
+                                        'otherPostSports' => $otherPostSports,
+                                        'firstPostBusiness' => $firstPostBusiness,
+                                        'otherPostBusiness' => $otherPostBusiness
+                                         ]);
     }
 
 }
