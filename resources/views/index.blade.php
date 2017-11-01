@@ -35,9 +35,9 @@
 
           @foreach($sortByLikes as $post)
 
-            <div class="single_iteam"> <a href="{{$post->id}}"> <img src="{{asset('images/slider_img4.jpg')}}" alt=""></a>
+            <div class="single_iteam"> <a href="{{$post->cat_name}}/{{$post->id}}"> <img src="{{asset('images/slider_img4.jpg')}}" alt=""></a>
               <div class="slider_article">
-                <h2><a class="slider_tittle" href="{{$post->id}}">{{$post->name}}</a></h2>
+                <h2><a class="slider_tittle" href="{{$post->cat_name}}/{{$post->id}}">{{$post->name}}</a></h2>
                 <p>{{$post->description}}</p>
               </div>
             </div>
@@ -131,7 +131,7 @@
             </div>
             <div class="technology">
               <div class="single_post_content">
-                <h2><span>Sports</span></h2>
+                <h2><a href="{{route ('categoryController',['category'=> $firstPostSports->cat_name])}}"><span>Sports</span></a></h2>
                 <ul class="business_catgnav">
                   <li>
                     <figure class="bsbig_fig wow fadeInDown"> <a href="#" class="featured_img"> <img alt="" src="{{asset('images/featured_img3.jpg')}}"> <span class="overlay"></span> </a>

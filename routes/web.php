@@ -13,3 +13,4 @@
 
 Route::get('/', 'IndexController@index');
 
+Route::get('/category/{category}', 'IndexController@category')->name('categoryController');
