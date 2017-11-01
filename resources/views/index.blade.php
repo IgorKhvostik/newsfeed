@@ -35,7 +35,7 @@
 
           @foreach($sortByLikes as $post)
 
-            <div class="single_iteam"> <a href="{{$post->cat_name}}/{{$post->id}}"> <img src="{{asset('images/slider_img4.jpg')}}" alt=""></a>
+            <div class="single_iteam"> <a href="{{$post->cat_name}}/{{$post->id}}"> <img src="{{$post->picture}}" alt=""></a>
               <div class="slider_article">
                 <h2><a class="slider_tittle" href="{{$post->cat_name}}/{{$post->id}}">{{$post->name}}</a></h2>
                 <p>{{$post->description}}</p>
@@ -55,7 +55,7 @@
               <ul class="latest_postnav">
                 @foreach($postLatest as $post)
                 <li>
-                  <div class="media"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
+                  <div class="media"> <a href="#" class="media-left"> <img alt="" src="{{$post->picture}}"> </a>
                     <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
                   </div>
                 </li>
@@ -79,7 +79,7 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 <li>
-                  <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" src="{{asset('images/featured_img1.jpg')}}"> <span class="overlay"></span> </a>
+                  <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" src="{{$firstPostBusiness->picture}}"> <span class="overlay"></span> </a>
                     <figcaption> <a href="#">{{$firstPostBusiness->name}}</a> </figcaption>
                     <p>{{$firstPostBusiness->description}}</p>
                   </figure>
@@ -90,7 +90,7 @@
               <ul class="spost_nav">
                 @foreach($otherPostBusiness as $post)
                 <li>
-                  <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
+                  <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{$post->picture}}"> </a>
                     <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
                   </div>
                 </li>
@@ -109,7 +109,8 @@
 
                     <ul class="business_catgnav wow fadeInDown">
                         <li>
-                          <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" src="{{asset('images/featured_img2.jpg')}}"> <span class="overlay"></span> </a>
+                          <figure class="bsbig_fig">
+                            <a href="#" class="featured_img"> <img alt="" src="{{$firstPostFashion->picture}}"> <span class="overlay"></span> </a>
                             <figcaption> <a href="#">{{$firstPostFashion->name}}</a> </figcaption>
                             <p>{{$firstPostFashion->description}}</p>
                           </figure>
@@ -120,7 +121,8 @@
                       @foreach($otherPostFashion as $post)
                       <ul class="spost_nav">
                         <li>
-                          <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
+                          <div class="media wow fadeInDown">
+                            <a href="#" class="media-left"> <img alt="" src="{{$post->picture}}"> </a>
                             <div class="media-body"> <a href="#" class="catg_title">{{$post->name}}</a> </div>
                           </div>
                         </li>
@@ -134,7 +136,8 @@
                 <h2><a href="{{route ('categoryController',['categoryName'=> $firstPostSports->cat_name])}}"><span>Sports</span></a></h2>
                 <ul class="business_catgnav">
                   <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> $firstPostSports->cat_name, 'id'=>$firstPostSports->id])}}" class="featured_img"> <img alt="" src="{{asset('images/featured_img3.jpg')}}"> <span class="overlay"></span> </a>
+                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> $firstPostSports->cat_name, 'id'=>$firstPostSports->id])}}" class="featured_img">
+                        <img alt="" src="{{$firstPostSports->picture}}"> <span class="overlay"></span> </a>
                       <figcaption> <a href="{{route ('postController',['categoryName'=> $firstPostSports->cat_name, 'id'=>$firstPostSports->id])}}">{{$firstPostSports->name}}</a> </figcaption>
                       <p>{{$firstPostSports->description}}</p>
                     </figure>
@@ -143,7 +146,8 @@
                 <ul class="spost_nav">
                   @foreach($otherPostSports as $post)
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> $post->cat_name, 'id'=>$post->id])}}" class="media-left"> <img alt="" src="{{asset('images/post_img1.jpg')}}"> </a>
+                    <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> $post->cat_name, 'id'=>$post->id])}}" class="media-left">
+                        <img alt="" src="{{$post->picture}}"> </a>
                       <div class="media-body"> <a href="{{route ('postController',['categoryName'=> $post->cat_name, 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                     </div>
                   </li>

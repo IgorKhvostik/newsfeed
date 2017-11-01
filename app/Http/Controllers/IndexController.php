@@ -82,11 +82,12 @@ class IndexController extends Controller
             ->where('posts.id', '=', $postId)
             ->orderBy('posts.id','desc')
             ->get()->first();
-       // dd($post->cat_name);
+        //dd($post->picture);
 
         return view('post')->with(['name'=>$post->name,
                                     'category'=>$post->cat_name,
                                     'text'=>$post->text,
+                                    'picture'=>$post->picture
 
 
         ]);

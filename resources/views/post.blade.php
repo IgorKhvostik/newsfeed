@@ -38,9 +38,12 @@
                         <li class="active">Mobile</li>
                     </ol>
                     <h1>{{$name}}</h1>
-                    <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>{{$category}}</a> </div>
-                    <div class="single_page_content"> <img class="img-center" src="../images/single_post_img.jpg" alt="">
-                        <p>{{$text}}</p>
+                    <div class="post_commentbox">
+                        <a href="#"><i class="fa fa-user"></i>Wpfreeware</a>
+                            <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>{{$category}}</a> </div>
+                                <div class="single_page_content">
+                                    <img class="img-center" src="../images/2517-4.jpg" alt="">
+                                    <p>{{$text}}</p>
 
                     </div>
                     <div class="social_link">

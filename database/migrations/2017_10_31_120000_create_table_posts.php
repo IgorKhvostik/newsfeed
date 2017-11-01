@@ -30,6 +30,7 @@ class CreateTablePosts extends Migration
                  ->on('users')
                  ->onDelete('cascade');
            $table->unsignedBigInteger('likes');
+           $table->string('picture',100);
            $table->timestamps();
        });
     }
