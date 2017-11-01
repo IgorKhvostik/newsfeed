@@ -60,10 +60,35 @@ class IndexController extends Controller
     }
 
     public function category($categoryName){
+        $posts=DB::table('posts')
+            ->join('categories','posts.category_id', '=', 'categories.id')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.*', 'categories.cat_name', 'users.first_name')
+            ->where('categories.cat_name', '=', $categoryName)
+            ->orderBy('posts.id','desc')
+            ->get();
+        //dd($posts);
+
+        return view('post');
+
 
     }
 
     public function post($categoryName,$postId){
-        dd($postId);
+        $post=DB::table('posts')
+            ->join('categories','posts.category_id', '=', 'categories.id')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.*', 'categories.cat_name', 'users.first_name')
+            ->where('posts.id', '=', $postId)
+            ->orderBy('posts.id','desc')
+            ->get()->first();
+       // dd($post->cat_name);
+
+        return view('post')->with(['name'=>$post->name,
+                                    'category'=>$post->cat_name,
+                                    'text'=>$post->text,
+
+
+        ]);
     }
 }
