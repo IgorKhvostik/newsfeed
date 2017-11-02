@@ -27,14 +27,12 @@
                     <div class="header_top">
                         <div class="header_top_left">
                             <ul class="top_nav">
-                                <li><a href="#">Home</a></li>
+                                <li><a href="{{route('indexController')}}">Home</a></li>
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
-                        <div class="header_top_right">
-                            <p>Friday, December 05, 2045</p>
-                        </div>
+
 
                     </div>
 
@@ -47,6 +45,22 @@
                 </div>
             </div>
         </header>
+        <section id="navArea">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav main_nav">
+                        <li class="active"><a href="{{route('indexController')}}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+                        @foreach($catList as $cat)
+                            <li><a href="{{route ('categoryController',['categoryName'=> $cat])}}">{{$cat}}</a></li>
+                        @endforeach
+
+                    </ul>
+                </div>
+            </nav>
+        </section>
 
         @yield('content')
 
@@ -80,8 +94,8 @@
         </div>
     </div>
     <div class="footer_bottom">
-        <p class="copyright">Copyright &copy; 2017 <a href="#">NewsFeed</a></p>
-        <p class="developer">Developed By Wpfreeware</p>
+        <p class="copyright">Copyright &copy; 2017 >NewsFeed</p>
+
     </div>
 </footer>
 </div>

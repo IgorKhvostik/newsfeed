@@ -44,6 +44,11 @@ class IndexController extends Controller
         $firstPostBusiness=$postsBusiness->first();
         $otherPostBusiness=$postsBusiness->splice(1,4);
 
+        $categoriesArr=Category::all()->toArray();
+        foreach ($categoriesArr as $category){
+            $catList[]=$category['cat_name'];
+        }
+
         //dd($otherPostFashion);
         //dd($postLatest);
 
@@ -56,7 +61,8 @@ class IndexController extends Controller
                                         'firstPostSports'=> $firstPostSports,
                                         'otherPostSports' => $otherPostSports,
                                         'firstPostBusiness' => $firstPostBusiness,
-                                        'otherPostBusiness' => $otherPostBusiness
+                                        'otherPostBusiness' => $otherPostBusiness,
+                                        'catList'=>$catList
                                          ]);
     }
 

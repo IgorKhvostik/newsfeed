@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('indexController');
 
 Route::prefix('category')->group(function(){
     Route::get('{categoryName}', 'IndexController@category')->name('categoryController');
