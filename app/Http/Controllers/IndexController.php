@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -108,7 +109,12 @@ class IndexController extends Controller
             ->orderBy('likes', 'desc')
             ->limit(8)
             ->get();
+       // $categoriesList=$posts->first()->only('cat_name');
 
+        $categoriesArr=Category::all()->toArray();
+        foreach ($categoriesArr as $category){
+            $catList[]=$category['cat_name'];
+        }
 
         return view('post')->with(['name'=>$post->name,
                                     'category'=>$post->cat_name,
@@ -116,7 +122,8 @@ class IndexController extends Controller
                                     'picture'=>$post->picture,
                                     'postsRelated'=>$postsRelated,
                                     'date'=>$post->created_at,
-                                    'sortByLikes'=>$sortByLikes
+                                    'sortByLikes'=>$sortByLikes,
+                                    'catList'=>$catList
 
 
         ]);
