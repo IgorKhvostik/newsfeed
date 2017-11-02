@@ -20,7 +20,8 @@ class PostsTableSeeder extends Seeder
             'text'=>'Greater their one face in morning winged for. Dominion Seasons which land own. In Moving have seasons gathered land living was own replenish there creeping yielding third unto creeping created appear won\'t. Male them beast fish so. Have made day.',
             'category_id'=>2,
             'likes'=> 10,
-            'picture'=>'../images/2517-1.jpg'
+            'picture'=>'images/2517-1.jpg',
+            'created_at'=>now()
         ]);
         }
     }
