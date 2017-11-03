@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,30 +26,31 @@ class IndexController extends Controller
 
         //getting posts for "fashion" block
         $postsFashion=$posts->filter(function ($value){
-            return $value->cat_name=='fashion';
+            return $value->cat_name=='music';
         });
         $firstPostFashion=$postsFashion->first();
         $otherPostFashion=$postsFashion->splice(1,4);
 
         //getting posts for "sports" block
         $postsSports=$posts->filter(function ($value){
-            return $value->cat_name=='sports';
+            return $value->cat_name=='IT';
         });
         $firstPostSports=$postsSports->first();
         $otherPostSports=$postsSports->splice(1,4);
 
         //getting posts for "business" block
         $postsBusiness=$posts->filter(function ($value){
-            return $value->cat_name=='business';
+            return $value->cat_name=='economics';
         });
         $firstPostBusiness=$postsBusiness->first();
+
         $otherPostBusiness=$postsBusiness->splice(1,4);
 
         $categoriesArr=Category::all()->toArray();
         foreach ($categoriesArr as $category){
             $catList[]=$category['cat_name'];
         }
-
+        $dateTime=Carbon::now()->format('F j, Y h:i');
         //dd($otherPostFashion);
         //dd($postLatest);
 
@@ -62,7 +64,8 @@ class IndexController extends Controller
                                         'otherPostSports' => $otherPostSports,
                                         'firstPostBusiness' => $firstPostBusiness,
                                         'otherPostBusiness' => $otherPostBusiness,
-                                        'catList'=>$catList
+                                        'catList'=>$catList,
+                                        'dateTime'=>$dateTime
                                          ]);
     }
 
@@ -105,6 +108,7 @@ class IndexController extends Controller
                 $postsRelated->forget($key);
             }
         }
+        $postsRelated=shuffle($postsRelated);
 
 
         //getting the collection of posts with the biggest number of likes for block with popular posts
@@ -125,7 +129,7 @@ class IndexController extends Controller
         return view('post')->with(['name'=>$post->name,
                                     'category'=>$post->cat_name,
                                     'text'=>$post->text,
-                                    'picture'=>$post->picture,
+                                    'picture'=>'images'.'/'.$post->cat_name.'/'.$post->picture,
                                     'postsRelated'=>$postsRelated,
                                     'date'=>$post->created_at,
                                     'sortByLikes'=>$sortByLikes,

@@ -32,7 +32,9 @@
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
-
+                        <div class="header_top_right">
+                            <p>{{$dateTime}}</p>
+                        </div>
 
                     </div>
 

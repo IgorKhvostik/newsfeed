@@ -11,72 +11,171 @@ class MorePostsTableSeeder extends Seeder
      */
     public function run()
     {
+                DB::table('posts')->insert([
+                    'user_id'=>rand(1,5) ,
+                    'name'=>'Доллар и евро дорожают',
+                    'description'=>'Доллар и евро дорожают: гривня опустилась на межбанке и в официальных курсах',
+                    'text'=>'В четверг, 2 ноября, котировки гривни к доллару США на межбанковском валютном рынке к закрытию торгов установились на уровне 26,93/26,95 грн/долл., сообщил УНИАН дилер коммерческого банка. По информации собеседника агентства, котировки гривни по отношению к евро находятся на уровне 31,40/31,43 грн/евро, по отношению к российскому рублю – на уровне 0,4602/0,4611 грн/рубль. По данным Национального банка, средневзвешенный курс гривни на межбанке к 17:00 установился на уровне 26,9314 грн/долл., участники рынка к этому часу заключили 508 сделок на сумму 311,66 млн долл.',
+                    'category_id'=>3,
+                    'likes'=> 5,
+                    'picture'=>'1.jpg',
+                    'created_at'=>now()
+                ]);
+
+
 
             DB::table('posts')->insert([
-                'user_id'=>rand(1,8) ,
-                'name'=>'Leo sociis',
-                'description'=>'Leo sociis, cum lacinia dis volutpat',
-                'text'=>'Leo sociis, cum lacinia dis volutpat. Scelerisque conubia ac quisque purus laoreet vel nullam nulla etiam primis class nibh sem nisl vestibulum fusce sagittis fringilla augue integer elit nonummy ac tellus mus iaculis. Suscipit ante condimentum molestie condimentum ultrices, consequat aliquam metus posuere. Nonummy nec adipiscing fermentum cubilia elementum eleifend.',
-                'category_id'=>1,
+                'user_id'=>rand(1,5) ,
+                'name'=>'Украина значительно снизила объемы экспорта азотных удобрений, но импорт при этом заметно увеличился.',
+                'description'=>'В Украине экспорт азотных удобрений обвалился, а импорт вырос',
+                'text'=>'По данным Государственной службы статистики Украины, экспорт аммиака за 8 месяцев 2017 года составил 120,68 тыс тонн, что ниже показателя аналогичного периода прошлого года на 10%. Карбамида экспортировано 311,48 тыс тонн – на 70% ниже, чем в прошлом году. Наибольшее падение наблюдается по аммиачной селитре. Этого товара вывезено 0,136 тыс тонн, что составляет всего 0,6% от экспортного объема прошлого года.
+                        В то же время, импорт азотных за 8 месяцев 2017 года, наоборот вырос. Аммиака ввезено 238,55 тыс тонн, что в 4,5 раза больше, чем за аналогичный период прошлого года. Импорт нитрата аммония за год вырос на 138% — до 192,39 тыс тонн. Объемы ввоза карбамида удвоились до 370 тыс тонн.',
+                'category_id'=>3,
                 'likes'=> 5,
-                'picture'=>'images/2517-2.jpg',
+                'picture'=>'2.jpg',
                 'created_at'=>now()
             ]);
 
             DB::table('posts')->insert([
-                'user_id'=>rand(1,8) ,
-                'name'=>'Fermentum vitae. ',
-                'description'=>'Fermentum vitae. Rhoncus congue non.',
-                'text'=>'Fermentum vitae. Rhoncus congue non. Sit rhoncus Vestibulum dapibus pretium Semper tellus proin mattis sociis dis ipsum aenean tristique enim risus vestibulum tellus molestie Sapien fusce amet suscipit erat lorem aliquet congue. Orci blandit imperdiet, curabitur. Litora commodo. Ac interdum. Potenti sociosqu lacus vehicula at blandit. Arcu curabitur varius, feugiat.',
+                'user_id'=>rand(1,5) ,
+                'name'=>'Чому "Укрзалізниця" мусить платити борг',
+                'description'=>'Або перереєстрація після націоналізації',
+                'text'=>'Нещодавно на брифінгу в окупованому Луганску представник так званої "ЛНР" на переговорах в "мінському форматі" Владислав Дейнего заявив, що в Мінську на засіданні робочої групи з економічних питань Контактної групи відпрацьовувався механізм погашення Києвом заборгованості перед працівниками Луганської дирекції залізниць ПАТ "Укрзалізниця".
+                        
+                        2 грудня 2015 року аналітичний відділ ГІ "Права Справа" повідомив про те, що станом на перше грудня 2015 року в штаті "Луганської дирекції залізничних перевезень" ПАТ "Укрзалізниця" числиться вісімсот чоловік, які не виходять на роботу, офіційно не звільнені, проте на своїх місцях відсутні з різних причин. В Луганській дирекції звільнити їх ніяк не можуть - немає узгодження з керівництвом з Донецька, а Донецьк згоди на це не дає.
+                        
+                        "Луганська дирекція залізничних перевезень" ще до початку збройного протистояння на Донбасі підпорядковувалася Донецькому офісу ПАТ "Укрзалізниця". Варто зазначити, що без узгодження з Донецьким офісом ДП "Донецька залізниця" в Луганську не могли ухвалити жодного рішення - від графіку руху, до прийняття на роботу співробітника. Статус територій змінився на "тимчасово окуповані", але система підпорядкування Луганської дирекції лишилася незмінною.',
                 'category_id'=>3,
                 'likes'=> 8,
-                'picture'=>'images/2517-3.jpg',
+                'picture'=>'3.jpg',
                 'created_at'=>now()
             ]);
 
             DB::table('posts')->insert([
-                'user_id'=>rand(1,8) ,
-                'name'=>'Creepeth may beast.',
-                'description'=>'Creepeth may beast. Replenish gathering morning all sea',
-                'text'=>'Creepeth may beast. Replenish gathering morning all sea, and hath A won\'t was likeness. Subdue i sea had lights isn\'t fifth, shall waters lesser doesn\'t years fill herb his seas beast shall gathered likeness they\'re fifth night after called a lights winged can\'t open doesn\'t without likeness divided night i.',
+                'user_id'=>rand(1,5) ,
+                'name'=>'З 1 листопада подорожчав хліб',
+                'description'=>'Виробник пояснив причину',
+                'text'=>'Ще на початку лютого виробник підняв вартість батону, а також білого та житнього хлібу до 8 гривень. В магазинах ж почали продавати на гривню дорожче. Тоді зростання ціни аргументували підвищенням мінімальної заробітної плати та здорожчанням енергоносіїв і газу для промисловості. Наступне підвищення було у вересні. Вартість трьох видів хлібобулочних зросла до 8,40 гривень. Прибдати хліб і батон у магазині коштувало по 9:50.  З 1 листопада ціна на буханець хліба і батона знову піднялась. Виробник пояснює, відпускна вартість піднялась на 5%. Тепер хлібобулочні постачатимуть у магазини по 8,42 гривень.  - Ми провели подорожчання, бо підвищилась ціна на газ для промислових підприємств, а також на паливно-мастильні матеріали. Піднялась вартість борошна і його доставка. Ми якраз вмістились у тих 5%, на які підняли ціну на хліб, - розповідає vsim.ua директор компанії "Торговий дім "Хмельницькхліб" Валентин Романенко.',
                 'category_id'=>3,
                 'likes'=> 3,
-                'picture'=>'images/2517-3.jpg',
+                'picture'=>'4.jpg',
                 'created_at'=>now()
             ]);
 
             DB::table('posts')->insert([
-                'user_id'=>rand(1,8) ,
-                'name'=>'Them be itself deep in',
-                'description'=>'Doesn\'t shall may great greater land fill void god first whose',
-                'text'=>'Doesn\'t shall may great greater land fill void god first whose. Female forth meat it the. Seed darkness creature seasons. Saying in image fish them won\'t fruitful i saw. Two, together dry image i the them morning cattle image bring. Evening brought. Also. Divide. Moving fowl dry. And heaven. The.',
-                'category_id'=>3,
+                'user_id'=>rand(1,5) ,
+                'name'=>'Ева едет в Вавилон',
+                'description'=>'«Ева едет в Вавилон» — шестой студийный альбом группы «25/17», выпущенный 14 сентября 2017 года.',
+                'text'=>'Альбом был анонсирован осенью 2016 года, было объявлено, что новый альбом по сравнению с «Русским подорожником» станет более гитарным и «женским». По мнению журнала «Афиша Daily», альбом ещё в начале 2017 года был отнесён к наиболее ожидаемым релизам года. Первая песня нового альбома, которая называется «Она не такая как все» была презентована на Нашем радио в начале июня в программе «Чартова дюжина». 1 сентября широкой публике был представлен ещё один трек альбома — песня «Комната», отсылающаяся к знаменитому стихотворению Иосифа Бродского «Не выходи из комнаты».
+                        
+                        Полностью альбом был опубликован в интернете 14 сентября. В записи приняли участие Александр Ф. Скляр, Гарик Сукачев, Аффинаж, Хаски и Саграда. Новый альбом рассказывает историю любви мужчины и женщины, и получился по сравнению со всеми предыдущими релизами группы наиболее мелодичным. Вместе с тем песни альбома проникнуты одиночеством и отчаянием. В музыкальном плане, несмотря на почти невероятную жанровую эклектичность, песни группы звучат органично и естественно — участники группы умело сочетают почти несочетаемое, объединяя во многих песнях по две-три музыкальные стилистики.
+                        
+                        Презентация альбома анонсирована 4 ноября 2017 года в Москве и 25 ноября в Санкт-Петербурге.',
+                'category_id'=>1,
                 'likes'=> 10,
-                'picture'=>'images/2517-3.jpg',
+                'picture'=>'2517-1.jpg',
                 'created_at'=>now()
             ]);
 
             DB::table('posts')->insert([
-                'user_id'=>rand(1,8) ,
-                'name'=>'Greater their one face in morning winged for.',
-                'description'=>'Created winged moved lights',
-                'text'=>'Created winged moved lights grass image fourth. Gathering likeness stars face kind form you\'ll place, set form from. Brought give kind two moveth morning light over. Darkness Open light there male fish yielding moved yielding heaven it very kind. Life that fowl above make of beast very shall can\'t brought.',
+                'user_id'=>rand(1,5) ,
+                'name'=>'Noisia - Split The Atom',
+                'description'=>'Noisia\'s debut studio album Split the Atom was released on 5 April 2010.',
+                'text'=>'The album was released as a full-length CD as well as two double 12" EPs; the Vision EP includes four Drum and Bass tracks whilst the Division EP includes four Electro house/Breaks tracks.
+
+                        The single from this album include "Machine Gun" (released March 8, 2010), which also includes remixes by Spor, Amon Tobin and 16bit, "Split the Atom" (released July 25, 2010), which has been remixed by Bar9 and Ed Rush & Optical, and "Alpha Centauri", which has been remixed by Excision & Datsik.
+                        
+                        Some of the songs already had public release in various forms, "Stigma" was released in 2008 on Vision Recordings and "Diplodocus" was released in 2009 on Quarantine. Both "Stigma" and "Diplodocus" along with "Split the Atom", "Headknot" and "Square Feet" all feature on Noisia\'s FabricLive.40 released in June 2008. Machine Gun has also been released as part of WipEout HD Fury\'s soundtrack and appeared in a trailer for the game and were appeared on Far Cry 3 trailer Stranded
+                        
+                        Many people expected this album to be mostly drum and bass, however, critics and fans alike acclaimed it for its wide variety of genres.
+                        
+                        On February 27, 2012, Noisia released a special edition of Split The Atom on Deadmau5\'s acclaimed label mau5trap. The first disc is the full-length original album while the second disc is a remix album with two original tracks, "Tommy\'s Theme" and "Could This Be", that later become singles released through mau5trap.',
                 'category_id'=>1,
                 'likes'=> 70,
-                'picture'=>'images/2517-2.jpg',
+                'picture'=>'noisia.jpg',
                 'created_at'=>now()
             ]);
             DB::table('posts')->insert([
-            'user_id'=>rand(1,8) ,
-            'name'=>'Together. Void deep under',
-            'description'=>'Sea saying which stars kind you\'re greater seed, spirit deep',
-            'text'=>'Together. Void deep under. Sea saying which stars kind you\'re greater seed, spirit deep forth whose green own own of. You\'re whales image deep, first, under night moving dry is it cattle divided he own Blessed god shall. Winged sea under fly without kind him gathering meat night life set.',
+            'user_id'=>rand(1,5) ,
+            'name'=>'Умереть от счастья',
+            'description'=>'«Умереть от счастья» — пятый студийный альбом группы «25/17», выпущенный в 2017 году. ',
+            'text'=>'Альбом вышел 28 февраля 2017 года. В записи также принимали участие Ёлка, Ноггано, Loc-Dog, Глеб Самойлов и Сергей Летов, с которыми Бледный и Ант записали несколько композиций. Песни перемежаются короткими прозаическими вставками, в которых рассказываются короткие истории по заявленной теме альбома. Текст читает актёр Андрей Филиппак.',
             'category_id'=>1,
-            'likes'=> 70,
-             'picture'=>'images/2517-2.jpg',
+            'likes'=> 12,
+             'picture'=>'2517-2.jpg',
                 'created_at'=>now()
             ]);
 
+        DB::table('posts')->insert([
+            'user_id'=>rand(1,5) ,
+            'name'=>'Various Artists ‎– Evolutions Vol. 5',
+            'description'=>'Blackout Music NL, 2017',
+            'text'=>'https://www.discogs.com/Various-Evolutions-Vol-5/release/10929951',
+            'category_id'=>1,
+            'likes'=> 12,
+            'picture'=>'evolutions.jpg',
+            'created_at'=>now()
+        ]);
+        DB::table('posts')->insert([
+            'user_id'=>rand(1,5) ,
+            'name'=>'Beyerdynamic T5P',
+            'description'=>'500$',
+            'text'=>'Эти высококлассные наушники закрытого типа не терпят низкокачественного оборудования и сжатых аудиофайлов. То есть это не самый подходящий вариант для использования на ходу. Кроме того, они слишком громоздкие и неудобные для ношения в общественных местах. Тем не менее, компания Beyerdynamic позиционирует модель T5p как наиболее подходящую и для стационарного, и для мобильного использования. Стоит отметить, что это ее первые мобильные наушники класса Hi-End.
+                     Алюминиевый футляр для хранения наушников — первый приятный сюрприз для покупателей T5p. Наушники идут в комплекте с различными аксессуарами, такими как чехол для транспортировки, адаптер для самолета и 3,5-миллиметровый разъем, он же мини-джек. Эти аксессуары подчеркивают возможности использования наушников с портативными устройствами. Однако в комплекте нет входа для микрофона. Мягкая кожаная отделка на стяжке наушников и амбушюрах обеспечивает комфорт во время ношения и придает внешнему виду изделия приятный лоск.
+                     Чувствительность Beyerdynamic T5P равна 102 дБ/мВт, импеданс — 32 Ом. Частотный диапазон составляет от 5 до 50000 Гц. Длина провода — 1,2 м. Масса наушников — 350 г.',
+            'category_id'=>1,
+            'likes'=> 5,
+            'picture'=>'beyerdynamic.jpg',
+            'created_at'=>now()
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id'=>rand(1,5) ,
+            'name'=>'Qualcomm подала в суд на Apple',
+            'description'=>'Qualcomm подала В Суд на Apple за предоставление секретной информации Intel',
+            'text'=>'Qualcomm подает в суд на Apple за нарушение контракта и предоставление секретной информации своему конкуренту Intel.
+
+                            Для лучшего понимания Apple на протяжении многих лет сотрудничает с Qualcomm для производства модемов внутри iPhone. Тем не менее, с iPhone 7, американская компания начала поставлять некоторые варианты с использованием модных модемов Intel. И вот тогда начались проблемы.
+                            
+                            По словам Qualcomm, Apple поделилась некоторыми собственными исходными кодами со своим конкурентом, необходимым для того, чтобы программное обеспечение работало внутри модемов. Хотя иск не был обнародован, некоторые его части уже появились в Интернете:
+                            «В ХОДЕ ПЕРЕГОВОРОВ С QUALCOMM APPLE ИСПОЛЬЗОВАЛА СВОИ КОММЕРЧЕСКИЕ РЫЧАГИ И ТРЕБОВАЛА БЕСПРЕЦЕДЕНТНОГО ДОСТУПА К ОЧЕНЬ ЦЕННОМУ И ВЫСОКО КОНФИДЕНЦИАЛЬНОМУ ПРОГРАММНОМУ ОБЕСПЕЧЕНИЮ QUALCOMM, ВКЛЮЧАЯ ИСХОДНЫЙ КОД».',
+            'category_id'=>2,
+            'likes'=> 3,
+            'picture'=>'qualcomm.jpeg',
+            'created_at'=>now()
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id'=>rand(1,5) ,
+            'name'=>'Обзор ІТ-рынка труда: Сумы',
+            'description'=>'В серии «Обзор IT-рынка труда» мы рассказываем об IT-индустрии в разных городах Украины',
+            'text'=>'В ІТ-индустрии Сум занято 1000-1500 специалистов. В городе работает более 30 ІТ-компаний, крупнейшие из которых активно сотрудничают с СумГУ — главной кузницей ІТ-кадров города. Ежегодно вузы готовят 200-300 будущих ІТ-специалистов.
+                    Средние зарплаты программистов в Сумах:
+                    Junior — $600;
+                    Middle — $1000;
+                    Senior — $ 1600.
+                    Большинство сумских ІТ-компаний занимаются аутсорсингом, но есть также несколько R&D-офисов продуктовых компаний.
+                    Читать полную статью :https://dou.ua/lenta/articles/it-market-sumy/',
+            'category_id'=>2,
+            'likes'=> 12,
+            'picture'=>'sumy.jpg',
+            'created_at'=>now()
+        ]);
+
+        DB::table('posts')->insert([
+            'user_id'=>rand(1,5) ,
+            'name'=>'Не прошлым, а будущим: как IT-индустрия может сформировать новый имидж Харькова',
+            'description'=>'Настало время Харькову меньше говорить и думать о себе в прошедшем времени, больше — о том, какие возможности для талантов и бизнеса он предоставляет уже сейчас и каким город станет в будущем.',
+            'text'=>'Харьковский IT-бизнес проложил мост между индустриальным и научным прошлым города и современной информационной экономикой. Сильная инженерная школа и уникальные для Украины технические вузы послужили опорами для построения харьковской IT-индустрии. Эти преимущества сложились исторически, и их ощущаешь сразу же, как попадаешь в эту экосистему (я переехал в город после 16 лет работы в Киеве).
+                    Харьковская IT-индустрия обеспечивает постоянный приток инноваций и новых знаний в город. Мировые бренды из самых разных отраслей находят высококлассных специалистов, умеющих решать сложные инженерные задачи, именно в Харькове. А те, в свою очередь, получают возможность создавать передовые технологии в родном для себя городе.
+                    У харьковской GlobalLogic, например, есть уникальная экспертиза в медицине, которая накапливалась почти 20 лет. Некоторые из наших инженеров даже получают дополнительное медицинское образование, чтобы лучше разбираться во всех тонкостях этой сложной и зарегулированной сферы. Благодаря такому подходу, харьковские специалисты получают все больше ответственности на проектах компаний-лидеров этой сферы. Например, создание программного обеспечение для устройства автоматизированного ввода медицинских препаратов в организм пациента.
+                    300 харьковских IT-компаний помогают бизнесам со всего мира развиваться, а харьковчанам — получать современные и востребованные в мире знания и заниматься по-настоящему интересными проектами. Индустрия формирует в Харькове средний класс, распространяет мировые стандарты ведения бизнеса, генерирует прибыль, не загрязняя окружающую среду и не затрачивая при этом природных ресурсов. Это и есть экономика будущего, частью которой становится Харьков.
+                    Но есть одно «но»: я уверен, что мы, как индустрия, можем сделать гораздо больше!',
+            'category_id'=>2,
+            'likes'=> 8,
+            'picture'=>'kharkov.jpg',
+            'created_at'=>now()
+        ]);
 
     }
 }
