@@ -151,6 +151,7 @@ class IndexController extends Controller
     }
 
     public function userPosts($userId){
+        $dateTime=Carbon::now()->format('F j, Y h:i');
         $posts=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
@@ -170,6 +171,11 @@ class IndexController extends Controller
             $cat=$categories[$i];
             $postsByCategories[$i]=$posts->where('cat_name', '=', $cat);
         }
+        return view('user')->with([
+                                    'posts'=>$postsByCategories,
+                                    'catList'=>$categories,
+                                    'dateTime'=>$dateTime
+        ]);
 
     }
 }
