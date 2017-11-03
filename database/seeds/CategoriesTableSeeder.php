@@ -15,7 +15,7 @@ class CategoriesTableSeeder extends Seeder
            'cat_name'=>'music'
         ]);
         DB::table('categories')->insert([
-            'cat_name'=>'IT'
+            'cat_name'=>'it'
         ]);
         DB::table('categories')->insert([
             'cat_name'=>'economics'

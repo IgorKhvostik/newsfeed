@@ -33,11 +33,12 @@ class IndexController extends Controller
 
         //getting posts for "sports" block
         $postsSports=$posts->filter(function ($value){
-            return $value->cat_name=='IT';
+            return $value->cat_name=='it';
         });
         $firstPostSports=$postsSports->first();
-        $otherPostSports=$postsSports->splice(1,4);
 
+        $otherPostSports=$postsSports->splice(1,4);
+           // dd($otherPostSports);
         //getting posts for "business" block
         $postsBusiness=$posts->filter(function ($value){
             return $value->cat_name=='economics';
@@ -108,7 +109,8 @@ class IndexController extends Controller
                 $postsRelated->forget($key);
             }
         }
-        $postsRelated=shuffle($postsRelated);
+        $postsRelated=$postsRelated->shuffle()->slice(0,6);
+       // dd($postsRelated);
 
 
         //getting the collection of posts with the biggest number of likes for block with popular posts
@@ -117,23 +119,30 @@ class IndexController extends Controller
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'categories.cat_name', 'users.first_name')
             ->orderBy('likes', 'desc')
-            ->limit(8)
+            ->limit(9)
             ->get();
        // $categoriesList=$posts->first()->only('cat_name');
-
+        //$sortByLikes=$sortByLikes->where('cat_name', '=', $categoryName);
+        foreach ($sortByLikes as $key=>$value) {
+            if ($value->id == $post->id) {
+                $sortByLikes->forget($key);
+            }
+        }
         $categoriesArr=Category::all()->toArray();
         foreach ($categoriesArr as $category){
             $catList[]=$category['cat_name'];
         }
-
+        $dateTime=Carbon::now()->format('F j, Y h:i');
+        //dd('images'.'/'.$post->cat_name.'/'.$post->picture);
         return view('post')->with(['name'=>$post->name,
                                     'category'=>$post->cat_name,
                                     'text'=>$post->text,
-                                    'picture'=>'images'.'/'.$post->cat_name.'/'.$post->picture,
+                                    'picture'=>'../images'.'/'.$post->cat_name.'/'.$post->picture,
                                     'postsRelated'=>$postsRelated,
                                     'date'=>$post->created_at,
                                     'sortByLikes'=>$sortByLikes,
-                                    'catList'=>$catList
+                                    'catList'=>$catList,
+                                    'dateTime'=>$dateTime
 
 
         ]);

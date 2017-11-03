@@ -34,7 +34,7 @@
                         <ul class="spost_nav wow fadeInDown animated">
                             @foreach($postsRelated as $post)
                             <li>
-                                <div class="media"> <a class="media-left" href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}"> <img src="../../public/{{$post->picture}}" alt=""> </a>
+                                <div class="media"> <a class="media-left" href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}"> <img src="../../public/images/{{$post->cat_name}}/{{$post->picture}}" alt=""> </a>
                                     <div class="media-body"> <a class="catg_title" href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}">{{$post->name}}</a> </div>
                                 </div>
                             </li>
@@ -61,7 +61,7 @@
                         @foreach($sortByLikes as $post)
                         <li>
                             <div class="media wow fadeInDown">
-                                <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="media-left"><img alt="" src="../../public/{{$post->picture}}"> </a>
+                                <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="media-left"><img alt="" src="../../public/images/{{$post->cat_name}}/{{$post->picture}}"> </a>
                                 <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                             </div>
                         </li>
