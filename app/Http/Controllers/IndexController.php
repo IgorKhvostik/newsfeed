@@ -92,7 +92,7 @@ class IndexController extends Controller
         $posts=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'users.first_name')
+            ->select('posts.*', 'categories.cat_name', 'users.first_name','users.second_name')
             ->where('categories.cat_name', '=', $categoryName)
             ->orderBy('posts.id','desc')
             ->get();
@@ -135,6 +135,8 @@ class IndexController extends Controller
         $dateTime=Carbon::now()->format('F j, Y h:i');
         //dd('images'.'/'.$post->cat_name.'/'.$post->picture);
         return view('post')->with(['name'=>$post->name,
+                                    'user_id'=>$post->user_id,
+                                    'userName'=>$post->first_name . ' ' . $post->second_name,
                                     'category'=>$post->cat_name,
                                     'text'=>$post->text,
                                     'picture'=>'../images'.'/'.$post->cat_name.'/'.$post->picture,
@@ -146,5 +148,28 @@ class IndexController extends Controller
 
 
         ]);
+    }
+
+    public function userPosts($userId){
+        $posts=DB::table('posts')
+            ->join('categories','posts.category_id', '=', 'categories.id')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->select('posts.id','posts.likes','posts.name','posts.description','posts.picture', 'categories.cat_name', 'users.first_name','users.second_name')
+            ->where('user_id', '=', $userId)
+            ->orderBy('likes', 'desc')
+            ->get();
+        //dd($posts);
+        $categories=array();
+        foreach ($posts as $post){
+
+            if (!in_array($post->cat_name, $categories)){
+                $categories[]=$post->cat_name;
+            }
+        }
+        for ($i=0;$i<count($categories);$i++){
+            $cat=$categories[$i];
+            $postsByCategories[$i]=$posts->where('cat_name', '=', $cat);
+        }
+
     }
 }

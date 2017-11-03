@@ -7,13 +7,12 @@
             <div class="left_content">
                 <div class="single_page">
                     <ol class="breadcrumb">
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="#">Technology</a></li>
-                        <li class="active">Mobile</li>
+                        <li><a href="{{route ('indexController')}}">HOME</a></li>
+                        <li><a href="{{route ('categoryController',['categoryName'=>$category])}}">{{strtoupper($category)}}</a></li>
                     </ol>
                     <h1>{{$name}}</h1>
                     <div class="post_commentbox">
-                        <a href="#"><i class="fa fa-user"></i>Wpfreeware</a>
+                        <a href="{{route ('userPostsController', ['userId'=>$user_id])}}"><i class="fa fa-user"></i>{{$userName}}</a>
                             <span><i class="fa fa-calendar"></i>{{$date}}</span> <a href="{{route ('categoryController',['categoryName'=>$category])}}"><i class="fa fa-tags"></i>{{$category}}</a> </div>
                                 <div class="single_page_content">
                                     <img class="img-center" src="../../public/{{$picture}}" alt="">
