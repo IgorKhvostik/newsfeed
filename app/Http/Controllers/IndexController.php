@@ -77,10 +77,22 @@ class IndexController extends Controller
             ->select('posts.*', 'categories.cat_name', 'users.first_name')
             ->where('categories.cat_name', '=', $categoryName)
             ->orderBy('posts.id','desc')
-            ->get();
-        //dd($posts[0]->cat_name);
+            ->paginate(10);
+        //dd($posts);
+        $dateTime=Carbon::now()->format('F j, Y h:i');
+        $categoriesArr=Category::all()->toArray();
+        foreach ($categoriesArr as $category){
+            $catList[]=$category['cat_name'];
+        }
 
-        return view('post');
+        return view('category')->with([
+                                    'category'=>$categoryName,
+                                    'posts'=>$posts,
+                                    'name'=>$posts->first()->name,
+                                     'dateTime'=>$dateTime,
+                                    'catList'=>$catList
+
+        ]);
 
 
     }
@@ -171,10 +183,14 @@ class IndexController extends Controller
             $cat=$categories[$i];
             $postsByCategories[$i]=$posts->where('cat_name', '=', $cat);
         }
+        $userName=strtoupper($posts->first()->first_name . ' ' . $posts->first()->second_name);
+       // dd($postsByCategories);
         return view('user')->with([
                                     'posts'=>$postsByCategories,
                                     'catList'=>$categories,
-                                    'dateTime'=>$dateTime
+                                    'dateTime'=>$dateTime,
+                                    'userId'=>$userId,
+                                    'userName'=>$userName
         ]);
 
     }
