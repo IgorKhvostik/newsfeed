@@ -44,20 +44,21 @@
             </div>
         </div>
         <nav class="nav-slit">
-            <a class="prev" href="{{route ('postController',['categoryName'=> strtolower($category), 'id'=>$prev->id])}}"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
+            <a class="prev" href="{{route ('postController',['categoryName'=> $prev->cat_name, 'id'=>$prev->id])}}"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
                 <div>
                     <h3>{{$prev->name}}</h3>
                     <img src="../../public/images/{{$prev->cat_name}}/{{$prev->picture}}" alt=""/> </div>
             </a>
-            <a class="next" href="{{route ('postController',['categoryName'=> strtolower($category), 'id'=>$next->id])}}"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+            <a class="next" href="{{route ('postController',['categoryName'=> $next->cat_name, 'id'=>$next->id])}}"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
                 <div>
                     <h3>{{$next->name}}</h3>
                     <img src="../../public/images/{{$next->cat_name}}/{{$next->picture}}" alt=""/> </div>
-            </a> </nav>
+            </a>
+        </nav>
         <div class="col-lg-4 col-md-4 col-sm-4">
             <aside class="right_content">
                 <div class="single_sidebar">
-                    <h2><span>Popular Post</span></h2>
+                    <h2><span>Popular Posts</span></h2>
                     <ul class="spost_nav">
                         @foreach($sortByLikes as $post)
                         <li>

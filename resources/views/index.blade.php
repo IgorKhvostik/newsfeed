@@ -136,7 +136,7 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <aside class="right_content">
           <div class="single_sidebar">
-            <h2><span>Popular Post</span></h2>
+            <h2><span>Popular Posts</span></h2>
             <ul class="spost_nav">
               @foreach($sortByLikes as $post)
               <li>

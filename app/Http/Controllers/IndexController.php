@@ -114,9 +114,14 @@ class IndexController extends Controller
         $post=$posts->where('id', '=', $postId)->first();
 
         //getting the previous and the next post of the category
-        $postPrev=$posts->where('id', '=', $postId-1)->first();
-        $postNext=$posts->where('id', '=', $postId+1)->first();
-        //dd($postNext);
+        if ( is_null($postPrev=$posts->where('id', '=', $postId-1)->first())){
+            $postPrev=$posts->first();
+        }
+
+        if (is_null($postNext=$posts->where('id', '=', $postId+1)->first())){
+            $postNext=$posts->last();
+        }
+
 
 
         //exclude the post we needed to get the collection without it. It's necessary for block with related posts
