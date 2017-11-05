@@ -106,12 +106,17 @@ class IndexController extends Controller
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'categories.cat_name', 'users.first_name','users.second_name')
             ->where('categories.cat_name', '=', $categoryName)
-            ->orderBy('posts.id','desc')
+            ->orderBy('id', 'desc')
             ->get();
 
 
         //getting the post we need by it's ID
         $post=$posts->where('id', '=', $postId)->first();
+
+        //getting the previous and the next post of the category
+        $postPrev=$posts->where('id', '=', $postId-1)->first();
+        $postNext=$posts->where('id', '=', $postId+1)->first();
+        //dd($postNext);
 
 
         //exclude the post we needed to get the collection without it. It's necessary for block with related posts
@@ -145,6 +150,8 @@ class IndexController extends Controller
             $catList[]=$category['cat_name'];
         }
         $dateTime=Carbon::now()->format('F j, Y h:i');
+
+
         //dd('images'.'/'.$post->cat_name.'/'.$post->picture);
         return view('post')->with(['name'=>$post->name,
                                     'user_id'=>$post->user_id,
@@ -156,7 +163,9 @@ class IndexController extends Controller
                                     'date'=>$post->created_at,
                                     'sortByLikes'=>$sortByLikes,
                                     'catList'=>$catList,
-                                    'dateTime'=>$dateTime
+                                    'dateTime'=>$dateTime,
+                                    'prev'=>$postPrev,
+                                    'next'=>$postNext
 
 
         ]);

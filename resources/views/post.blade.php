@@ -44,15 +44,15 @@
             </div>
         </div>
         <nav class="nav-slit">
-            <a class="prev" href="#"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
+            <a class="prev" href="{{route ('postController',['categoryName'=> strtolower($category), 'id'=>$prev->id])}}"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
                 <div>
-                    <h3>City Lights</h3>
-                    <img src="../images/post_img1.jpg" alt=""/> </div>
+                    <h3>{{$prev->name}}</h3>
+                    <img src="../../public/images/{{$prev->cat_name}}/{{$prev->picture}}" alt=""/> </div>
             </a>
-            <a class="next" href="#"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+            <a class="next" href="{{route ('postController',['categoryName'=> strtolower($category), 'id'=>$next->id])}}"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
                 <div>
-                    <h3>Street Hills</h3>
-                    <img src="../images/post_img1.jpg" alt=""/> </div>
+                    <h3>{{$next->name}}</h3>
+                    <img src="../../public/images/{{$next->cat_name}}/{{$next->picture}}" alt=""/> </div>
             </a> </nav>
         <div class="col-lg-4 col-md-4 col-sm-4">
             <aside class="right_content">
