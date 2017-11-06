@@ -11,15 +11,12 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0;$i<5;$i++){
-            $name_list=array('retard','kek','Tolya','mannequin');
-            $sec_name_list=array('ant', 'jobs', 'sos');
-            $key_first=array_rand($name_list);
-            $key_sec=array_rand($sec_name_list);
+        for ($i=0;$i<7;$i++){
+            $name_list=array('retard','kek','Tolya','mannequin','ant', 'jobs', 'sos');
             DB::table('users')->insert([
-                'first_name' =>$name_list[$key_first],
-                'second_name' =>$sec_name_list[$key_sec],
-                'password' => bcrypt('secret')]);
+                'userName' =>$name_list[$i],
+
+                'password' => bcrypt('123456')]);
         }
     }
 }

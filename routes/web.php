@@ -19,3 +19,6 @@ Route::prefix('category')->group(function(){
 });
 
 Route::get('user/{userId}', 'IndexController@userPosts')->name('userPostsController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

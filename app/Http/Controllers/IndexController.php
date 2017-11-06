@@ -14,7 +14,7 @@ class IndexController extends Controller
         $posts=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'users.first_name')
+            ->select('posts.*', 'categories.cat_name', 'users.userName')
             ->orderBy('posts.id','desc')
             ->get();
 
@@ -74,7 +74,7 @@ class IndexController extends Controller
         $posts=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'users.first_name')
+            ->select('posts.*', 'categories.cat_name', 'users.userName')
             ->where('categories.cat_name', '=', $categoryName)
             ->orderBy('posts.id','desc')
             ->paginate(10);
@@ -104,7 +104,7 @@ class IndexController extends Controller
         $posts=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'users.first_name','users.second_name')
+            ->select('posts.*', 'categories.cat_name', 'userName')
             ->where('categories.cat_name', '=', $categoryName)
             ->orderBy('id', 'desc')
             ->get();
@@ -139,7 +139,7 @@ class IndexController extends Controller
         $sortByLikes=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'users.first_name')
+            ->select('posts.*', 'categories.cat_name', 'users.userName')
             ->orderBy('likes', 'desc')
             ->limit(9)
             ->get();
@@ -160,7 +160,7 @@ class IndexController extends Controller
         //dd('images'.'/'.$post->cat_name.'/'.$post->picture);
         return view('post')->with(['name'=>$post->name,
                                     'user_id'=>$post->user_id,
-                                    'userName'=>$post->first_name . ' ' . $post->second_name,
+                                    'userName'=>$post->userName,
                                     'category'=>$post->cat_name,
                                     'text'=>$post->text,
                                     'picture'=>'../images'.'/'.$post->cat_name.'/'.$post->picture,
@@ -181,7 +181,7 @@ class IndexController extends Controller
         $posts=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.id','posts.likes','posts.name','posts.description','posts.picture', 'categories.cat_name', 'users.first_name','users.second_name')
+            ->select('posts.id','posts.likes','posts.name','posts.description','posts.picture', 'categories.cat_name', 'users.userName')
             ->where('user_id', '=', $userId)
             ->orderBy('likes', 'desc')
             ->get();
@@ -197,7 +197,7 @@ class IndexController extends Controller
             $cat=$categories[$i];
             $postsByCategories[$i]=$posts->where('cat_name', '=', $cat);
         }
-        $userName=strtoupper($posts->first()->first_name . ' ' . $posts->first()->second_name);
+        $userName=strtoupper($posts->first()->userName);
        // dd($postsByCategories);
         return view('user')->with([
                                     'posts'=>$postsByCategories,
