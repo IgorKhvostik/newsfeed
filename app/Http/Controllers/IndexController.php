@@ -18,55 +18,44 @@ class IndexController extends Controller
             ->orderBy('posts.id','desc')
             ->get();
 
-        $categoriesArr=Category::all()->toArray();
+        //get the list of categories
+        $categoriesArr=Category::select('cat_name')->get()->toArray();;
         foreach ($categoriesArr as $category){
             $catList[]=$category['cat_name'];
         }
+
+        //sorting posts by categories
+        foreach ($catList as $cat){
+            static $i=0;
+            foreach ($posts as $post){
+                //we compare if category of post is equal to category in the catList on each iteration. If it's equal then we put it into array
+                if ($post->cat_name==$cat){
+                    $postGroup[$i][]=$post;
+                }
+            }
+            //get only 4 posts to display
+            $postGroup[$i]=array_slice($postGroup[$i], 0,4);
+
+            //divide posts to first post(displayed as big) and other posts(displayed as small) on the page
+            foreach ($postGroup as $post){
+                $post=array_reverse($post);
+                $firstPostGroup[$i]=array_splice($post, count($post)-1);
+                $postGroup[$i]=array_splice($post, 0);
+
+            }
+            $postGroup[$i]=array_reverse($postGroup[$i]);
+            $i++;
+        }
+
+        //dump($postGroup);
+       //dd($firstPostGroup);
+
 
         //getting posts for "latest post" block
         $postLatest=$posts->chunk(5)->first();
 
         //getting posts for "slick_slider" block
         $sortByLikes=$posts->sortByDesc('likes')->chunk(8)->first();
-
-        //getting posts for "fashion" block
-
-
-        $postsFashion=$posts->reject(function ($value){
-            //dd($catList);
-            return $value->cat_name=='music';
-        });
-        foreach ($catList as $cat){
-            static $i=0;
-                foreach ($posts as $post){
-                    if ($post->cat_name==$cat){
-                        $postGroup[$i]=$post;
-                    }
-                }
-                $i++;
-            }
-        dd($postGroup);
-
-        //dd($catList->first());
-        $firstPostFashion=$postsFashion->first();
-        $otherPostFashion=$postsFashion->splice(1,4);
-
-        //getting posts for "sports" block
-        $postsSports=$posts->filter(function ($value){
-            return $value->cat_name=='it';
-        });
-        $firstPostSports=$postsSports->first();
-
-        $otherPostSports=$postsSports->splice(1,4);
-           // dd($otherPostSports);
-        //getting posts for "business" block
-        $postsBusiness=$posts->filter(function ($value){
-            return $value->cat_name=='economics';
-        });
-        $firstPostBusiness=$postsBusiness->first();
-
-        $otherPostBusiness=$postsBusiness->splice(1,4);
-
 
         $dateTime=Carbon::now()->format('F j, Y h:i');
         //dd($otherPostFashion);
@@ -76,14 +65,10 @@ class IndexController extends Controller
             return view('index')->with(['posts'=> $posts,
                                         'postLatest'=>$postLatest,
                                         'sortByLikes'=>$sortByLikes,
-                                        'firstPostFashion'=>$firstPostFashion,
-                                        'otherPostFashion'=>$otherPostFashion,
-                                        'firstPostSports'=> $firstPostSports,
-                                        'otherPostSports' => $otherPostSports,
-                                        'firstPostBusiness' => $firstPostBusiness,
-                                        'otherPostBusiness' => $otherPostBusiness,
                                         'catList'=>$catList,
-                                        'dateTime'=>$dateTime
+                                        'dateTime'=>$dateTime,
+                                        'postGroup'=>$postGroup,
+                                        'firstPostGroup'=>$firstPostGroup
                                          ]);
     }
 
