@@ -18,6 +18,7 @@ class IndexController extends Controller
             ->orderBy('posts.id','desc')
             ->get();
 
+
         //get the list of categories
         $categoriesArr=Category::select('cat_name')->get()->toArray();;
         foreach ($categoriesArr as $category){
