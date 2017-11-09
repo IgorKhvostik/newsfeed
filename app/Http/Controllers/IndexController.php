@@ -18,6 +18,11 @@ class IndexController extends Controller
             ->orderBy('posts.id','desc')
             ->get();
 
+        $categoriesArr=Category::all()->toArray();
+        foreach ($categoriesArr as $category){
+            $catList[]=$category['cat_name'];
+        }
+
         //getting posts for "latest post" block
         $postLatest=$posts->chunk(5)->first();
 
@@ -25,9 +30,24 @@ class IndexController extends Controller
         $sortByLikes=$posts->sortByDesc('likes')->chunk(8)->first();
 
         //getting posts for "fashion" block
-        $postsFashion=$posts->filter(function ($value){
+
+
+        $postsFashion=$posts->reject(function ($value){
+            //dd($catList);
             return $value->cat_name=='music';
         });
+        foreach ($catList as $cat){
+            static $i=0;
+                foreach ($posts as $post){
+                    if ($post->cat_name==$cat){
+                        $postGroup[$i]=$post;
+                    }
+                }
+                $i++;
+            }
+        dd($postGroup);
+
+        //dd($catList->first());
         $firstPostFashion=$postsFashion->first();
         $otherPostFashion=$postsFashion->splice(1,4);
 
@@ -47,10 +67,7 @@ class IndexController extends Controller
 
         $otherPostBusiness=$postsBusiness->splice(1,4);
 
-        $categoriesArr=Category::all()->toArray();
-        foreach ($categoriesArr as $category){
-            $catList[]=$category['cat_name'];
-        }
+
         $dateTime=Carbon::now()->format('F j, Y h:i');
         //dd($otherPostFashion);
         //dd($postLatest);
