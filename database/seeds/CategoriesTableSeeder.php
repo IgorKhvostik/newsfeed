@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Category;
 class CategoriesTableSeeder extends Seeder
 {
     /**
@@ -11,14 +11,18 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
-           'cat_name'=>'music'
+        Category::create([
+            'name'=>'music',
         ]);
-        DB::table('categories')->insert([
-            'cat_name'=>'it'
+
+        Category::create([
+            'name'=>'it',
         ]);
-        DB::table('categories')->insert([
-            'cat_name'=>'economics'
+
+        Category::create([
+            'name'=>'economics',
         ]);
+
+
     }
 }

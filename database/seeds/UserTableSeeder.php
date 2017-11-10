@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\User;
 class UserTableSeeder extends Seeder
 {
     /**
@@ -11,12 +11,11 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0;$i<7;$i++){
-            $name_list=array('retard','kek','Tolya','mannequin','ant', 'jobs', 'sos');
-            DB::table('users')->insert([
-                'userName' =>$name_list[$i],
+        for ($i=0;$i<6;$i++){
+            $name_list=array('retard','kek','Tolya','mannequin','ant', 'jobs');
+            User::create(['name' =>$name_list[$i],
+                        'password' => bcrypt('123456')]);
 
-                'password' => bcrypt('123456')]);
         }
     }
 }
