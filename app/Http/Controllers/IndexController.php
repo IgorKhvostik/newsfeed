@@ -7,48 +7,45 @@ use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class IndexController extends Controller
 {
     public function index(){
-        $posts=DB::table('posts')
-            ->join('categories','posts.category_id', '=', 'categories.id')
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'users.userName')
-            ->orderBy('posts.id','desc')
-            ->get();
-
+        $posts=Post::with(['category:name,id','user:name,id'])->orderBy('posts.id', 'desc')->get();
+       // dd($posts);
 
         //get the list of categories
-        $categoriesArr=Category::select('cat_name')->get()->toArray();;
+        $categoriesArr=Category::select('name')->get()->toArray();
         foreach ($categoriesArr as $category){
-            $catList[]=$category['cat_name'];
+            $catList[]=$category['name'];
         }
+        //dd($catList);
 
         //sorting posts by categories
         foreach ($catList as $cat){
             static $i=0;
-            foreach ($posts as $post){
+            foreach ( $posts as $post){
                 //we compare if category of post is equal to category in the catList on each iteration. If it's equal then we put it into array
-                if ($post->cat_name==$cat){
+                if ($post->category->name==$cat){
                     $postGroup[$i][]=$post;
                 }
             }
-            //get only 4 posts to display
-            $postGroup[$i]=array_slice($postGroup[$i], 0,4);
 
+            //get only 4 posts to display
+
+            $postGroup[$i]=array_slice($postGroup[$i], 0,4);
+            //dd($postGroup);
             //divide posts to first post(displayed as big) and other posts(displayed as small) on the page
             foreach ($postGroup as $post){
                 $post=array_reverse($post);
                 $firstPostGroup[$i]=array_splice($post, count($post)-1);
                 $postGroup[$i]=array_splice($post, 0);
-
             }
             $postGroup[$i]=array_reverse($postGroup[$i]);
             $i++;
         }
-
-        //dump($postGroup);
+        //dd($postGroup);
        //dd($firstPostGroup);
 
 
@@ -73,7 +70,7 @@ class IndexController extends Controller
                                          ]);
     }
 
-    public function category($categoryName){
+   /* public function category($categoryName){
         $posts=DB::table('posts')
             ->join('categories','posts.category_id', '=', 'categories.id')
             ->join('users', 'posts.user_id', '=', 'users.id')
@@ -210,5 +207,5 @@ class IndexController extends Controller
                                     'userName'=>$userName
         ]);
 
-    }
+    }*/
 }
