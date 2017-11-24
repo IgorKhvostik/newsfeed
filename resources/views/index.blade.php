@@ -10,10 +10,10 @@
 
           @foreach($sortByLikes as $post)
 
-            <div class="single_iteam"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}"> <img src="images/{{$post->cat_name}}/{{$post->picture}}" alt=""></a>
+            <div class="single_iteam"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"> <img src="images/{{$post->category->name}}/{{$post->picture}}" alt=""></a>
               <div class="slider_article">
-                <h2><a class="slider_tittle" href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}">{{$post->name}}</a></h2>
-                <p><a  href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}">{{$post->description}}</a></p>
+                <h2><a class="slider_tittle" href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}">{{$post->name}}</a></h2>
+                <p><a  href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}">{{$post->description}}</a></p>
               </div>
             </div>
 
@@ -30,8 +30,8 @@
               <ul class="latest_postnav">
                 @foreach($postLatest as $post)
                 <li>
-                  <div class="media"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->cat_name}}/{{$post->picture}}"> </a>
-                    <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
+                  <div class="media"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->category->name}}/{{$post->picture}}"> </a>
+                    <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                   </div>
                 </li>
                 @endforeach
@@ -50,12 +50,12 @@
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="left_content">
           <div class="single_post_content">
-            <h2> <a href="{{route ('categoryController',['categoryName'=> strtolower($firstPostGroup[0][0]->cat_name)])}}"><span>{{strtoupper($firstPostGroup[0][0]->cat_name)}}</span></a></h2>
+            <h2> <a href="{{route ('categoryController',['categoryName'=> strtolower($firstPostGroup[0][0]->category->name)])}}"><span>{{strtoupper($firstPostGroup[0][0]->category->name)}}</span></a></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 <li>
-                  <figure class="bsbig_fig"> <a href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[0][0]->cat_name), 'id'=>$firstPostGroup[0][0]->id])}}" class="featured_img"> <img alt="" src="images/{{$firstPostGroup[0][0]->cat_name}}/{{$firstPostGroup[0][0]->picture}}"> <span class="overlay"></span> </a>
-                    <figcaption> <a class="catg_title" href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[0][0]->cat_name), 'id'=>$firstPostGroup[0][0]->id])}}">{{$firstPostGroup[0][0]->name}}</a> </figcaption>
+                  <figure class="bsbig_fig"> <a href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[0][0]->category->name), 'id'=>$firstPostGroup[0][0]->id])}}" class="featured_img"> <img alt="" src="images/{{$firstPostGroup[0][0]->category->name}}/{{$firstPostGroup[0][0]->picture}}"> <span class="overlay"></span> </a>
+                    <figcaption> <a class="catg_title" href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[0][0]->category->name), 'id'=>$firstPostGroup[0][0]->id])}}">{{$firstPostGroup[0][0]->name}}</a> </figcaption>
 
                   </figure>
                 </li>
@@ -65,8 +65,8 @@
               <ul class="spost_nav">
                 @foreach($postGroup[0] as $post)
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->cat_name}}/{{$post->picture}}"> </a>
-                    <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->category->name}}/{{$post->picture}}"> </a>
+                    <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                   </div>
                 </li>
                   @endforeach
@@ -76,7 +76,7 @@
           <div class="fashion_technology_area">
             <div class="fashion">
               <div class="single_post_content">
-                <h2><a href="{{route ('categoryController',['categoryName'=> strtolower($firstPostGroup[1][0]->cat_name)])}}"><span>{{strtoupper($firstPostGroup[1][0]->cat_name)}}</span></a></h2>
+                <h2><a href="{{route ('categoryController',['categoryName'=> strtolower($firstPostGroup[1][0]->category->name)])}}"><span>{{strtoupper($firstPostGroup[1][0]->category->name)}}</span></a></h2>
 
 
 
@@ -85,8 +85,8 @@
                     <ul class="business_catgnav wow fadeInDown">
                         <li>
                           <figure class="bsbig_fig">
-                            <a href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[1][0]->cat_name), 'id'=>$firstPostGroup[1][0]->id])}}" class="featured_img"> <img alt="" src="images/{{$firstPostGroup[1][0]->cat_name}}/{{$firstPostGroup[1][0]->picture}}"> <span class="overlay"></span> </a>
-                            <figcaption> <a class="catg_title" href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[1][0]->cat_name), 'id'=>$firstPostGroup[1][0]->id])}}">{{$firstPostGroup[1][0]->name}}</a> </figcaption>
+                            <a href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[1][0]->category->name), 'id'=>$firstPostGroup[1][0]->id])}}" class="featured_img"> <img alt="" src="images/{{$firstPostGroup[1][0]->category->name}}/{{$firstPostGroup[1][0]->picture}}"> <span class="overlay"></span> </a>
+                            <figcaption> <a class="catg_title" href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[1][0]->category->name), 'id'=>$firstPostGroup[1][0]->id])}}">{{$firstPostGroup[1][0]->name}}</a> </figcaption>
 
                           </figure>
                         </li>
@@ -97,8 +97,8 @@
                       <ul class="spost_nav">
                         <li>
                           <div class="media wow fadeInDown">
-                            <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->cat_name}}/{{$post->picture}}"> </a>
-                            <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
+                            <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->category->name}}/{{$post->picture}}"> </a>
+                            <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                           </div>
                         </li>
                       </ul>
@@ -108,12 +108,12 @@
             </div>
             <div class="technology">
               <div class="single_post_content">
-                <h2><a href="{{route ('categoryController',['categoryName'=> strtolower($firstPostGroup[2][0]->cat_name)])}}"><span>{{strtoupper($firstPostGroup[2][0]->cat_name)}}</span></a></h2>
+                <h2><a href="{{route ('categoryController',['categoryName'=> strtolower($firstPostGroup[2][0]->category->name)])}}"><span>{{strtoupper($firstPostGroup[2][0]->category->name)}}</span></a></h2>
                 <ul class="business_catgnav">
                   <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[2][0]->cat_name), 'id'=>$firstPostGroup[2][0]->id])}}" class="featured_img">
-                        <img alt="" src="images/{{$firstPostGroup[2][0]->cat_name}}/{{$firstPostGroup[2][0]->picture}}"> <span class="overlay"></span> </a>
-                      <figcaption> <a class="catg_title" href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[2][0]->cat_name), 'id'=>$firstPostGroup[2][0]->id])}}">{{$firstPostGroup[2][0]->name}}</a> </figcaption>
+                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[2][0]->category->name), 'id'=>$firstPostGroup[2][0]->id])}}" class="featured_img">
+                        <img alt="" src="images/{{$firstPostGroup[2][0]->category->name}}/{{$firstPostGroup[2][0]->picture}}"> <span class="overlay"></span> </a>
+                      <figcaption> <a class="catg_title" href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[2][0]->category->name), 'id'=>$firstPostGroup[2][0]->id])}}">{{$firstPostGroup[2][0]->name}}</a> </figcaption>
 
                     </figure>
                   </li>
@@ -121,9 +121,9 @@
                 <ul class="spost_nav">
                   @foreach($postGroup[2] as $post)
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="media-left">
-                        <img alt="" src="images/{{$post->cat_name}}/{{$post->picture}}"> </a>
-                      <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="media-left">
+                        <img alt="" src="images/{{$post->category->name}}/{{$post->picture}}"> </a>
+                      <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                     </div>
                   </li>
                     @endforeach
@@ -140,8 +140,8 @@
             <ul class="spost_nav">
               @foreach($sortByLikes as $post)
               <li>
-                <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->cat_name}}/{{$post->picture}}"> </a>
-                  <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->cat_name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
+                <div class="media wow fadeInDown"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="media-left"> <img alt="" src="images/{{$post->category->name}}/{{$post->picture}}"> </a>
+                  <div class="media-body"> <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}" class="catg_title">{{$post->name}}</a> </div>
                 </div>
               </li>
                 @endforeach
