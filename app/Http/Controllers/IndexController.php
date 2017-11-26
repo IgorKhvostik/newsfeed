@@ -11,6 +11,9 @@ use App\User;
 
 class IndexController extends Controller
 {
+    protected $userId;
+    protected $categoryName;
+
     public function index()
     {
         $posts = Post::with(['category:name,id', 'user:name,id'])->orderBy('posts.id', 'desc')->get();
@@ -21,7 +24,6 @@ class IndexController extends Controller
         foreach ($categoriesArr as $category) {
             $catList[] = $category['name'];
         }
-        //dd($catList);
 
         //sorting posts by categories
         foreach ($catList as $cat) {
@@ -34,9 +36,7 @@ class IndexController extends Controller
             }
 
             //get only 4 posts to display
-
             $postGroup[$i] = array_slice($postGroup[$i], 0, 4);
-            //dd($postGroup);
             //divide posts to first post(displayed as big) and other posts(displayed as small) on the page
             foreach ($postGroup as $post) {
                 $post = array_reverse($post);
@@ -46,23 +46,14 @@ class IndexController extends Controller
             $postGroup[$i] = array_reverse($postGroup[$i]);
             $i++;
         }
-        //dd($postGroup);
-        //dd($firstPostGroup[2][0]->category->name);
-
 
         //getting posts for "latest post" block
         $postLatest = $posts->chunk(5)->first();
 
         //getting posts for "slick_slider" block
         $sortByLikes = $posts->sortByDesc('likes')->chunk(8)->first();
-        /*foreach ( $sortByLikes as $post){
-            dd($post->picture);
-        }*/
-        //dd($sortByLikes->name);
-        $dateTime = Carbon::now()->format('F j, Y h:i');
-        //dd($otherPostFashion);
-        //dd($postLatest);
 
+        $dateTime = Carbon::now()->format('F j, Y h:i');
 
         return view('index')->with(['posts' => $posts,
             'postLatest' => $postLatest,
@@ -76,17 +67,18 @@ class IndexController extends Controller
 
     public function category($categoryName)
     {
+        $this->categoryName = $categoryName;
+        $posts = Post::whereHas('category', function ($query) {
+            $query->where('name', '=', $this->categoryName);
+        })
+            ->with('category:name,id')
+            ->orderBy('id', 'desc')
+            ->paginate(10);
 
-        $posts = Post::whereHas('category' ,function ( $query) {
-            $query->where('name', '=');
-        })->orderBy('id', 'desc')->get();
-        dd($posts);
-
-        //dd($posts[0]->category->name);
         $dateTime = Carbon::now()->format('F j, Y h:i');
         $categoriesArr = Category::all()->toArray();
         foreach ($categoriesArr as $category) {
-            $catList[] = $category['cat_name'];
+            $catList[] = $category['name'];
         }
 
         return view('category')->with([
@@ -95,83 +87,59 @@ class IndexController extends Controller
             'name' => $posts->first()->name,
             'dateTime' => $dateTime,
             'catList' => $catList
-
         ]);
-
-
     }
 
     public function post($categoryName, $postId)
     {
+        $this->categoryName = $categoryName;
 
-
-        //getting the collection of posts of category we need
-        $posts = DB::table('posts')
-            ->join('categories', 'posts.category_id', '=', 'categories.id')
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'userName')
-            ->where('categories.cat_name', '=', $categoryName)
-            ->orderBy('id', 'desc')
-            ->get();
-
+        //getting the collection of posts of chosen category
+        $posts = Post::with(['category:name,id', 'user:name,id'])->get();
 
         //getting the post we need by it's ID
-        $post = $posts->where('id', '=', $postId)->first();
+        $post = $posts->where('id', $postId)->first();
+
+        $postsByCategory = $posts->where('category.name', $categoryName);
 
         //getting the previous and the next post of the category
-        if (is_null($postPrev = $posts->where('id', '=', $postId - 1)->first())) {
-            $postPrev = $posts->first();
+        if (is_null($postPrev = $postsByCategory->where('id', $postId - 1)->first())) {
+            $postPrev = $postsByCategory->last();
         }
 
-        if (is_null($postNext = $posts->where('id', '=', $postId + 1)->first())) {
-            $postNext = $posts->last();
+        if (is_null($postNext = $postsByCategory->where('id', $postId + 1)->first())) {
+            $postNext = $postsByCategory->first();
         }
-
 
         //exclude the post we needed to get the collection without it. It's necessary for block with related posts
-        $postsRelated = $posts->where('cat_name', '=', $categoryName);
-        foreach ($postsRelated as $key => $value) {
-            if ($value->id == $post->id) {
-                $postsRelated->forget($key);
-            }
-        }
+        $postsRelated = $postsByCategory->except($postId);
         $postsRelated = $postsRelated->shuffle()->slice(0, 6);
-        // dd($postsRelated);
 
 
         //getting the collection of posts with the biggest number of likes for block with popular posts
-        $sortByLikes = DB::table('posts')
-            ->join('categories', 'posts.category_id', '=', 'categories.id')
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'categories.cat_name', 'users.userName')
-            ->orderBy('likes', 'desc')
-            ->limit(9)
-            ->get();
-        // $categoriesList=$posts->first()->only('cat_name');
-        //$sortByLikes=$sortByLikes->where('cat_name', '=', $categoryName);
-        foreach ($sortByLikes as $key => $value) {
-            if ($value->id == $post->id) {
-                $sortByLikes->forget($key);
+        $sortByLikes = $posts->except($postId)->sortByDesc('likes');
+
+        $categories = array();
+        foreach ($posts as $each) {
+            if (!in_array($each->category->name, $categories)) {
+                $categories[] = $each->category->name;
             }
         }
-        $categoriesArr = Category::all()->toArray();
-        foreach ($categoriesArr as $category) {
-            $catList[] = $category['cat_name'];
-        }
+        //dd($post->name);
+
         $dateTime = Carbon::now()->format('F j, Y h:i');
 
-
-        //dd('images'.'/'.$post->cat_name.'/'.$post->picture);
-        return view('post')->with(['name' => $post->name,
+        return view('post')->with([
+            'name' => $post->name,
             'user_id' => $post->user_id,
-            'userName' => $post->userName,
-            'category' => $post->cat_name,
+            'userName' => $post->user->name,
+            'category' => $post->category->name,
             'text' => $post->text,
-            'picture' => '../images' . '/' . $post->cat_name . '/' . $post->picture,
+            'picture' => '../images' . '/' . $post->category->name . '/' . $post->picture,
             'postsRelated' => $postsRelated,
             'date' => $post->created_at,
             'sortByLikes' => $sortByLikes,
-            'catList' => $catList,
+            'catList' => $categories,
             'dateTime' => $dateTime,
             'prev' => $postPrev,
             'next' => $postNext
@@ -182,28 +150,27 @@ class IndexController extends Controller
 
     public function userPosts($userId)
     {
+        $this->userId = $userId;
         $dateTime = Carbon::now()->format('F j, Y h:i');
-        $posts = DB::table('posts')
-            ->join('categories', 'posts.category_id', '=', 'categories.id')
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.id', 'posts.likes', 'posts.name', 'posts.description', 'posts.picture', 'categories.cat_name', 'users.userName')
-            ->where('user_id', '=', $userId)
-            ->orderBy('likes', 'desc')
-            ->get();
-        //dd($posts);
+        $posts = Post::with(['category:name,id', 'user:name,id'])->whereHas('user', function ($query) {
+            $query->where('id', $this->userId);
+        })->get();
+
         $categories = array();
         foreach ($posts as $post) {
-
-            if (!in_array($post->cat_name, $categories)) {
-                $categories[] = $post->cat_name;
+            if (!in_array($post->category->name, $categories)) {
+                $categories[] = $post->category->name;
             }
         }
+
+        $postsByCategories = array();
         for ($i = 0; $i < count($categories); $i++) {
-            $cat = $categories[$i];
-            $postsByCategories[$i] = $posts->where('cat_name', '=', $cat);
+            $this->categoryName = $categories[$i];
+            $postsByCategories[$this->categoryName] = $posts->where('category.name', $this->categoryName);
         }
-        $userName = strtoupper($posts->first()->userName);
-        // dd($postsByCategories);
+
+        $userName = strtoupper($posts->first()->user->name);
+
         return view('user')->with([
             'posts' => $postsByCategories,
             'catList' => $categories,
