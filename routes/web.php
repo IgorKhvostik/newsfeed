@@ -33,3 +33,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/add-post', 'AddPostController@addPost')->name('addPost');
+Route::get('/logout', 'AddPostController@logout')->name('logout');
+Route::post('/save-post', 'AddPostController@savePost')->name('savePost');

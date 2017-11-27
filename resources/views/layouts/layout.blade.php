@@ -31,10 +31,11 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="{{route('addPost')}}">Add Post</a></li>
+                                <li><a href="{{route('logout')}}">Logout</a></li>
                             </ul>
                         </div>
                         <div class="header_top_right">
-                            {{--<p>{{$dateTime}}</p>--}}
+                            <p>{{$dateTime}}</p>
                         </div>
 
                     </div>
@@ -56,9 +57,9 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav main_nav">
                         <li class="active"><a href="{{route('indexController')}}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-                        {{--@foreach($catList as $cat)
+                        @foreach($catList as $cat)
                             <li><a href="{{route ('categoryController',['categoryName'=> $cat])}}">{{$cat}}</a></li>
-                        @endforeach--}}
+                        @endforeach
 
                     </ul>
                 </div>
@@ -79,9 +80,9 @@
                 <div class="footer_widget wow fadeInDown">
                     <h2>Tag</h2>
                     <ul class="tag_nav">
-                       {{-- @foreach($catList as $cat)
+                        @foreach($catList as $cat)
                             <li><a href="{{route ('categoryController',['categoryName'=>$cat])}}">{{$cat}}</a></li>
-                        @endforeach--}}
+                        @endforeach
                     </ul>
                 </div>
             </div>
