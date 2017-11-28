@@ -100,7 +100,7 @@
 
         $(document).ready(function() {
 
-            $("#like").click(function(event){
+            $("#like").click(function(){
 
                 $.post({
                     headers: {
