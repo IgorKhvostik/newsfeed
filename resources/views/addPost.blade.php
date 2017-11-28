@@ -2,7 +2,7 @@
 @section('content')
     <section id="contentSection">
         <div class="row">
-            <form style="width: 50%; margin: 0 auto; display: block;" action="/save-post" method="post">
+            <form style="width: 50%; margin: 0 auto; display: block;" action="/save-post" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <h3><label for="name">Post name</label></h3>
                     <input type="text" class="form-control" id="name" name="name">
@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <h3><label for="file">Attached picture</label></h3>
-                    <input type="file" class="form-control-file" id="file" name="picture">
+                    <input type="file" class="form-control-file" id="file" name="image">
                 </div>
                 <br>
                 <div class="form-group">
