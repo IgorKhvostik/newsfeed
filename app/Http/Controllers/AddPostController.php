@@ -39,6 +39,12 @@ class AddPostController extends Controller
 
     public function savePost(Request $request)
     {
+        $request->validate([
+           'name' => 'required|unique:posts| max:100',
+            'description' => 'required|unique:posts| max:300',
+            'text' => 'required|unique:posts',
+            'image' => 'file|required'
+        ]);
         $picture_name=strip_tags(strtolower(trim($request->get('name'))));
         $picture_name=str_replace(' ', '-', $picture_name );
         $post = new Post(array(
