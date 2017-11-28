@@ -40,25 +40,25 @@ class AddPostController extends Controller
     public function savePost(Request $request)
     {
         $request->validate([
-           'name' => 'required|unique:posts| max:100',
+            'name' => 'required|unique:posts| max:100',
             'description' => 'required|unique:posts| max:300',
             'text' => 'required|unique:posts',
             'image' => 'file|required'
         ]);
-        $picture_name=strip_tags(strtolower(trim($request->get('name'))));
-        $picture_name=str_replace(' ', '-', $picture_name );
+        $picture_name = strip_tags(strtolower(trim($request->get('name'))));
+        $picture_name = str_replace(' ', '-', $picture_name);
+
         $post = new Post(array(
-            'name' => strip_tags($request->get('name')),
-            'description' => strip_tags($request->get('description')),
+            'name' => strip_tags(strtolower(trim($request->get('name')))),
+            'description' => strip_tags(strtolower(trim($request->get('description')))),
             'text' => $request->get('text'),
-            'picture' =>$picture_name . '.' . $request->file('image')->getClientOriginalExtension() ,
-            'category_id'=>3,
-            'user_id'=>Auth::id(),
-            'likes'=>2
+            'picture' => $picture_name . '.' . $request->file('image')->getClientOriginalExtension(),
+            'category_id' => $request->get('category'),
+            'user_id' => Auth::id(),
         ));
         $post->save();
 
-        $request->file('image')->move(base_path() . '/public/images/' . $request->get('category'), $picture_name . '.' . $request->file('image')->getClientOriginalExtension() );
+        $request->file('image')->move(base_path() . '/public/images/' . $request->get('category'), $picture_name . '.' . $request->file('image')->getClientOriginalExtension());
 
         return redirect()->route('indexController');
 

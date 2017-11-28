@@ -39,7 +39,7 @@
                     <h3><label for="category">Category</label></h3>
                     <select class="form-control" id="category" name="category">
                         @foreach($catList as $id=>$cat)
-                            <option id="{{$id}}">{{strtoupper($cat)}}</option>
+                            <option value="{{$id}}">{{strtoupper($cat)}}</option>
                         @endforeach
                     </select>
                     @if ($errors->has('category'))
