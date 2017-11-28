@@ -18,7 +18,7 @@
                                 <div class="media wow fadeInDown"><a
                                             href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                             class="media-left"> <img alt=""
-                                                                     src="../images/{{$post->category->name}}/{{$post->picture}}">
+                                                                     src="../images/{{$post->category->id}}/{{$post->picture}}">
                                     </a>
                                     <div class="media-body"><a
                                                 href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"

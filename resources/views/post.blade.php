@@ -22,7 +22,10 @@
                         <div class="single_page_content">
                             <img class="img-center" src="../../public/{{$picture}}" alt="">
                             <p>{{$text}}</p>
-
+                        </div>
+                        <div>
+                            <i class="fa fa-heart-o fa-3x" aria-hidden="true" id="like"></i>
+                            <span>{{$likes}}</span>
                         </div>
                         <div class="social_link">
                             <ul class="sociallink_nav">
@@ -31,6 +34,7 @@
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+
                             </ul>
                         </div>
                         <div class="related_post">
@@ -40,7 +44,7 @@
                                     <li>
                                         <div class="media"><a class="media-left"
                                                               href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}">
-                                                <img src="../../public/images/{{$post->category->name}}/{{$post->picture}}"
+                                                <img src="../../public/images/{{$post->category->id}}/{{$post->picture}}"
                                                      alt=""> </a>
                                             <div class="media-body"><a class="catg_title"
                                                                        href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}">{{$post->name}}</a>
@@ -59,14 +63,14 @@
                             class="icon-wrap"><i class="fa fa-angle-left"></i></span>
                     <div>
                         <h3>{{$prev->name}}</h3>
-                        <img src="../../public/images/{{$prev->category->name}}/{{$prev->picture}}" alt=""/></div>
+                        <img src="../../public/images/{{$prev->category->id}}/{{$prev->picture}}" alt=""/></div>
                 </a>
                 <a class="next"
                    href="{{route ('postController',['categoryName'=> $next->category->name, 'id'=>$next->id])}}"> <span
                             class="icon-wrap"><i class="fa fa-angle-right"></i></span>
                     <div>
                         <h3>{{$next->name}}</h3>
-                        <img src="../../public/images/{{$next->category->name}}/{{$next->picture}}" alt=""/></div>
+                        <img src="../../public/images/{{$next->category->id}}/{{$next->picture}}" alt=""/></div>
                 </a>
             </nav>
             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -79,7 +83,7 @@
                                     <div class="media wow fadeInDown">
                                         <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                            class="media-left"><img alt=""
-                                                                   src="../../public/images/{{$post->category->name}}/{{$post->picture}}">
+                                                                   src="../../public/images/{{$post->category->id}}/{{$post->picture}}">
                                         </a>
                                         <div class="media-body"><a
                                                     href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
@@ -93,4 +97,16 @@
             </div>
         </div>
     </section>
+    <script>
+        var postID = '{{$post->id}}';
+        $("#like").click(function(){
+            $.ajax({
+                url: "/like",
+                data: id=postID ,
+
+                success: function(result){
+                $("#like").html(result);
+            }});
+        });
+    </script>
 @endsection

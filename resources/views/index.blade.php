@@ -12,7 +12,7 @@
 
                         <div class="single_iteam"><a
                                     href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}">
-                                <img src="images/{{$post->category->name}}/{{$post->picture}}" alt=""></a>
+                                <img src="images/{{$post->category->id}}/{{$post->picture}}" alt=""></a>
                             <div class="slider_article">
                                 <h2><a class="slider_tittle"
                                        href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}">{{$post->name}}</a>
@@ -39,7 +39,7 @@
                                     <div class="media"><a
                                                 href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                                 class="media-left"> <img alt=""
-                                                                         src="images/{{$post->category->name}}/{{$post->picture}}">
+                                                                         src="images/{{$post->category->id}}/{{$post->picture}}">
                                         </a>
                                         <div class="media-body"><a
                                                     href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
@@ -71,7 +71,7 @@
                                     <figure class="bsbig_fig"><a
                                                 href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[0][0]->category->name), 'id'=>$firstPostGroup[0][0]->id])}}"
                                                 class="featured_img"> <img alt=""
-                                                                           src="images/{{$firstPostGroup[0][0]->category->name}}/{{$firstPostGroup[0][0]->picture}}">
+                                                                           src="images/{{$firstPostGroup[0][0]->category->id}}/{{$firstPostGroup[0][0]->picture}}">
                                             <span class="overlay"></span> </a>
                                         <figcaption><a class="catg_title"
                                                        href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[0][0]->category->name), 'id'=>$firstPostGroup[0][0]->id])}}">{{$firstPostGroup[0][0]->name}}</a>
@@ -88,7 +88,7 @@
                                         <div class="media wow fadeInDown"><a
                                                     href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                                     class="media-left"> <img alt=""
-                                                                             src="images/{{$post->category->name}}/{{$post->picture}}">
+                                                                             src="images/{{$post->category->id}}/{{$post->picture}}">
                                             </a>
                                             <div class="media-body"><a
                                                         href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
@@ -112,7 +112,7 @@
                                         <figure class="bsbig_fig">
                                             <a href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[1][0]->category->name), 'id'=>$firstPostGroup[1][0]->id])}}"
                                                class="featured_img"> <img alt=""
-                                                                          src="images/{{$firstPostGroup[1][0]->category->name}}/{{$firstPostGroup[1][0]->picture}}">
+                                                                          src="images/{{$firstPostGroup[1][0]->category->id}}/{{$firstPostGroup[1][0]->picture}}">
                                                 <span class="overlay"></span> </a>
                                             <figcaption><a class="catg_title"
                                                            href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[1][0]->category->name), 'id'=>$firstPostGroup[1][0]->id])}}">{{$firstPostGroup[1][0]->name}}</a>
@@ -129,7 +129,7 @@
                                             <div class="media wow fadeInDown">
                                                 <a href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                                    class="media-left"> <img alt=""
-                                                                            src="images/{{$post->category->name}}/{{$post->picture}}">
+                                                                            src="images/{{$post->category->id}}/{{$post->picture}}">
                                                 </a>
                                                 <div class="media-body"><a
                                                             href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
@@ -152,7 +152,7 @@
                                                     href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[2][0]->category->name), 'id'=>$firstPostGroup[2][0]->id])}}"
                                                     class="featured_img">
                                                 <img alt=""
-                                                     src="images/{{$firstPostGroup[2][0]->category->name}}/{{$firstPostGroup[2][0]->picture}}">
+                                                     src="images/{{$firstPostGroup[2][0]->category->id}}/{{$firstPostGroup[2][0]->picture}}">
                                                 <span class="overlay"></span> </a>
                                             <figcaption><a class="catg_title"
                                                            href="{{route ('postController',['categoryName'=> strtolower($firstPostGroup[2][0]->category->name), 'id'=>$firstPostGroup[2][0]->id])}}">{{$firstPostGroup[2][0]->name}}</a>
@@ -168,7 +168,7 @@
                                                         href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                                         class="media-left">
                                                     <img alt=""
-                                                         src="images/{{$post->category->name}}/{{$post->picture}}"> </a>
+                                                         src="images/{{$post->category->id}}/{{$post->picture}}"> </a>
                                                 <div class="media-body"><a
                                                             href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                                             class="catg_title">{{$post->name}}</a></div>
@@ -191,7 +191,7 @@
                                     <div class="media wow fadeInDown"><a
                                                 href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"
                                                 class="media-left"> <img alt=""
-                                                                         src="images/{{$post->category->name}}/{{$post->picture}}">
+                                                                         src="images/{{$post->category->id}}/{{$post->picture}}">
                                         </a>
                                         <div class="media-body"><a
                                                     href="{{route ('postController',['categoryName'=> strtolower($post->category->name), 'id'=>$post->id])}}"

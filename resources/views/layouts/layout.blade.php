@@ -14,6 +14,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.fancybox.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous">
+
+    </script>
 </head>
 <body>
 {{--<div id="preloader">
@@ -35,7 +41,10 @@
                             </ul>
                         </div>
                         <div class="header_top_right">
-                            <p>{{$dateTime}}</p>
+                            <p>@if(isset($dateTime))
+                                    {{$dateTime}}
+                                @endif
+                            </p>
                         </div>
 
                     </div>
@@ -57,10 +66,11 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav main_nav">
                         <li class="active"><a href="{{route('indexController')}}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+                        @if(isset($catList))
                         @foreach($catList as $cat)
                             <li><a href="{{route ('categoryController',['categoryName'=> $cat])}}">{{$cat}}</a></li>
                         @endforeach
-
+                        @endif
                     </ul>
                 </div>
             </nav>
@@ -80,9 +90,11 @@
                 <div class="footer_widget wow fadeInDown">
                     <h2>Tag</h2>
                     <ul class="tag_nav">
+                        @if(isset($catList))
                         @foreach($catList as $cat)
                             <li><a href="{{route ('categoryController',['categoryName'=>$cat])}}">{{$cat}}</a></li>
                         @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>

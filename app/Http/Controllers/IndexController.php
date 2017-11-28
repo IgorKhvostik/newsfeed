@@ -34,7 +34,6 @@ class IndexController extends Controller
                     $postGroup[$i][] = $post;
                 }
             }
-
             //get only 4 posts to display
             $postGroup[$i] = array_slice($postGroup[$i], 0, 4);
             //divide posts to first post(displayed as big) and other posts(displayed as small) on the page
@@ -55,13 +54,14 @@ class IndexController extends Controller
 
         $dateTime = Carbon::now()->format('F j, Y h:i');
 
-        return view('index')->with(['posts' => $posts,
+        return view('index')->with([
+            'posts' => $posts,
             'postLatest' => $postLatest,
             'sortByLikes' => $sortByLikes,
             'catList' => $catList,
             'dateTime' => $dateTime,
             'postGroup' => $postGroup,
-            'firstPostGroup' => $firstPostGroup
+            'firstPostGroup' => $firstPostGroup,
         ]);
     }
 
@@ -135,14 +135,16 @@ class IndexController extends Controller
             'userName' => $post->user->name,
             'category' => $post->category->name,
             'text' => $post->text,
-            'picture' => '../images' . '/' . $post->category->name . '/' . $post->picture,
+            'picture' => '../images' . '/' . $post->category->id . '/' . $post->picture,
             'postsRelated' => $postsRelated,
             'date' => $post->created_at,
             'sortByLikes' => $sortByLikes,
             'catList' => $categories,
             'dateTime' => $dateTime,
             'prev' => $postPrev,
-            'next' => $postNext
+            'next' => $postNext,
+            'likes'=>$post->likes,
+            'post' => $post
 
 
         ]);

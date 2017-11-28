@@ -69,4 +69,7 @@ class AddPostController extends Controller
         Auth::logout();
         return redirect()->route('indexController');
     }
+    public function like(Request $request){
+        dd($request);
+    }
 }
