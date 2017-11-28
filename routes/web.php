@@ -36,4 +36,4 @@ Route::get('/add-post', 'AddPostController@addPost')->name('addPost');
 Route::get('/logout', 'AddPostController@logout')->name('logout');
 Route::post('/save-post', 'AddPostController@savePost')->name('savePost');
 
-Route::post('/like', 'AddPostController@like');
+Route::post('/like', 'AddPostController@like')->name('like');

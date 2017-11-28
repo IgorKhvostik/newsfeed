@@ -24,8 +24,7 @@
                             <p>{{$text}}</p>
                         </div>
                         <div>
-                            <i class="fa fa-heart-o fa-3x" aria-hidden="true" id="like"></i>
-                            <span>{{$likes}}</span>
+                            <i class="fa fa-heart-o fa-3x" aria-hidden="true" id="like">{{$likes}}</i>
                         </div>
                         <div class="social_link">
                             <ul class="sociallink_nav">
@@ -98,15 +97,25 @@
         </div>
     </section>
     <script>
-        var postID = '{{$post->id}}';
-        $("#like").click(function(){
-            $.ajax({
-                url: "/like",
-                data: id=postID ,
 
-                success: function(result){
-                $("#like").html(result);
-            }});
+        $(document).ready(function() {
+
+            $("#like").click(function(event){
+
+                $.post({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/like",
+                    type: "POST",
+                    data: {id : "{{$id}}"},
+                    success: function(result){
+                        $("#like").html(result);
+                    }
+                });
+
+            });
+
         });
     </script>
 @endsection

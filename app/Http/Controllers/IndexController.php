@@ -125,7 +125,7 @@ class IndexController extends Controller
                 $categories[] = $each->category->name;
             }
         }
-        //dd($post->name);
+        //dd($post->id);
 
         $dateTime = Carbon::now()->format('F j, Y h:i');
 
@@ -144,7 +144,7 @@ class IndexController extends Controller
             'prev' => $postPrev,
             'next' => $postNext,
             'likes'=>$post->likes,
-            'post' => $post
+            'id' => $post->id
 
 
         ]);

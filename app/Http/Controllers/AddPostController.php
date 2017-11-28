@@ -70,6 +70,9 @@ class AddPostController extends Controller
         return redirect()->route('indexController');
     }
     public function like(Request $request){
-        dd($request);
+        $post=Post::find($request->id);
+       $post->likes=$post->likes+1;
+       $post->save();
+       return"$post->likes";
     }
 }

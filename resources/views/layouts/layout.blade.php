@@ -14,12 +14,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.fancybox.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.js"
-            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-            crossorigin="anonymous">
-
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 {{--<div id="preloader">
