@@ -18,6 +18,7 @@ class IndexController extends Controller
 
     public function index()
     {
+        $likes=Like::select('*')->get()->groupBy('post_id');
         $posts = Post::with(['category:name,id', 'user:name,id'])->orderBy('posts.id', 'desc')->get();
 
 
@@ -54,7 +55,15 @@ class IndexController extends Controller
         $postLatest = $posts->chunk(5)->first();
 
         //getting posts for "slick_slider" block
-        $sortByLikes = $posts->sortByDesc('likes')->chunk(8)->first();
+        dd($posts);
+        foreach ($likes as $klike=>$vlike){
+            foreach ($posts as $kpost=>$vpost){
+                if ($klike){
+
+                }
+            }
+        }
+        $sortByLikes =
 
         $dateTime = Carbon::now()->format('F j, Y h:i');
 
