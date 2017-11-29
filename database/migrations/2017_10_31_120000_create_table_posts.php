@@ -28,7 +28,6 @@ class CreateTablePosts extends Migration
                  ->references('id')
                  ->on('users')
                  ->onDelete('cascade');
-           $table->unsignedBigInteger('likes')->default(0);
            $table->string('picture',100);
            $table->timestamps();
        });

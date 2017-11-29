@@ -24,7 +24,8 @@
                             <p>{{$text}}</p>
                         </div>
                         <div>
-                            <i class="fa fa-heart-o fa-3x" aria-hidden="true" id="like">{{$likes}}</i>
+                            <i class="fa fa-heart fa-3x" aria-hidden="true" id="like" style="color: darkgrey;cursor: pointer" ></i>
+                            <i class=" fa fa-3x" id="like-number">{{$likes}}</i>
                         </div>
                         <div class="social_link">
                             <ul class="sociallink_nav">
@@ -95,27 +96,29 @@
                 </aside>
             </div>
         </div>
+
     </section>
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
 
-        $(document).ready(function() {
+            $(document).ready(function() {
+                $("#like").click(function(){
 
-            $("#like").click(function(){
+                    $.post({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "{{route('like')}}",
+                        data: {id : "{{$id}}"},
+                        success: function(result){
+                            $("#like-number").html(result);
+                        }
+                    });
 
-                $.post({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "/like",
-                    type: "POST",
-                    data: {id : "{{$id}}"},
-                    success: function(result){
-                        $("#like").html(result);
-                    }
                 });
 
             });
+        </script>
 
-        });
-    </script>
+
 @endsection

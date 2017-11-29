@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Like;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Http\Middleware\RenamePicture;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Storage;
 
 class AddPostController extends Controller
@@ -69,10 +70,23 @@ class AddPostController extends Controller
         Auth::logout();
         return redirect()->route('indexController');
     }
+
     public function like(Request $request){
-        $post=Post::find($request->id);
-       $post->likes=$post->likes+1;
-       $post->save();
-       return"$post->likes";
+
+
+        $like=Like::where('user_id', Auth::id())->where('post_id', $request->id)->get()->first();
+        $number=DB::table('likes')->where('post_id', $request->id)->count('id');
+        if ($like){
+            Like::destroy($like->id);
+            return $number-1;
+        }else{
+            $like= new Like();
+            $post=Post::find($request->id);
+            $like->user()->associate(Auth::id());
+            $like->post()->associate($post);
+            $like->save();
+            return $number+1;
+        }
+
     }
 }

@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.fancybox.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
@@ -33,7 +33,9 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="{{route('addPost')}}">Add Post</a></li>
-                                <li><a href="{{route('logout')}}">Logout</a></li>
+                                <li><a href="{{route('login')}}">Login</a></li>
+                                <li><a href="{{url('/logout')}}">Logout</a></li>
+
                             </ul>
                         </div>
                         <div class="header_top_right">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Like;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class IndexController extends Controller
 {
     protected $userId;
     protected $categoryName;
+    public $catList;
 
     public function index()
     {
@@ -21,9 +23,11 @@ class IndexController extends Controller
 
         //get the list of categories
         $categoriesArr = Category::select('name')->get()->toArray();
+
         foreach ($categoriesArr as $category) {
-            $catList[] = $category['name'];
+           $catList[] = $category['name'];
         }
+
 
         //sorting posts by categories
         foreach ($catList as $cat) {
@@ -97,8 +101,10 @@ class IndexController extends Controller
         //getting the collection of posts of chosen category
         $posts = Post::with(['category:name,id', 'user:name,id'])->get();
 
+
         //getting the post we need by it's ID
         $post = $posts->where('id', $postId)->first();
+        $likes=Like::where('post_id',$post->id)->count();
 
         $postsByCategory = $posts->where('category.name', $categoryName);
 
@@ -143,7 +149,7 @@ class IndexController extends Controller
             'dateTime' => $dateTime,
             'prev' => $postPrev,
             'next' => $postNext,
-            'likes'=>$post->likes,
+            'likes'=>$likes,
             'id' => $post->id
 
 

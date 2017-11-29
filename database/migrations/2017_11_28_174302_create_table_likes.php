@@ -25,7 +25,7 @@ class CreateTableLikes extends Migration
                 ->references('id')
                 ->on('posts')
                 ->onDelete('cascade');
-            $table->boolean('set');
+            $table->boolean('set')->default(true);
             $table->timestamps();
         });
     }
